@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 11:35:02 by ngharian          #+#    #+#             */
-/*   Updated: 2025/02/24 10:35:40 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/02/24 11:16:16 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,13 @@ static int	*clean_color(char *color)
 			print_exit_error("Invalid RGB value.\n");
 		while (ft_isdigit(color[i]))
 			++i;
-		while (ft_isspace(color[i]) || color[i] ==',')
-		++i;
-	}		
+		while (ft_isspace(color[i]) || color[i] == ',')
+			++i;
+	}
 	free(color);
 	return (buffer);
-		
 }
-	
+
 void	check_infos(t_info *infos)
 {
 	infos->no_texture = clean_texture(infos->no_texture, 0, 0);

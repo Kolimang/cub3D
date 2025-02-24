@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 20:38:54 by ngharian          #+#    #+#             */
-/*   Updated: 2025/02/24 10:33:43 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/02/24 11:07:57 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ typedef struct s_clean_info
 	//toutes les infos mlx (connection, fenetre, image, etc...)
 	//images textures
 }	t_clean_infos;
-
 
 void	print_exit_error(char *message);
 t_info	parsing(int fd);

@@ -6,13 +6,13 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:08:36 by ngharian          #+#    #+#             */
-/*   Updated: 2025/02/24 10:31:15 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/02/24 11:09:03 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
 
-static void init_infos(t_info *infos)
+static void	init_infos(t_info *infos)
 {
 	infos->map = NULL;
 	infos->no_texture = NULL;
@@ -57,7 +57,7 @@ static void	ft_update_arr(t_info *infos, char *line)
 	infos->map_len++;
 }
 
-static void handle_line(char *line, t_info *infos, int i)
+static void	handle_line(char *line, t_info *infos, int i)
 {
 	if (line[i] == '1' || line[i] == '0')
 		ft_update_arr(infos, line);
