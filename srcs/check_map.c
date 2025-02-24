@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 12:45:25 by ngharian          #+#    #+#             */
-/*   Updated: 2025/02/24 11:13:24 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/02/24 11:29:51 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	update_start_pos(int *trigger, t_info *infos, int y, int x)
 {
 	if (*trigger == 1)
 		print_exit_error("There should be only one start position");
+	*trigger = 1;
 	infos->direction = infos->map[y][x];
 	infos->x_start = x;
 	infos->y_start = y;
@@ -26,7 +27,7 @@ void	update_start_pos(int *trigger, t_info *infos, int y, int x)
 //changer la logique? -> car là, imaginons qu'on ait
 //01110
 //10001 => c'est bien ferme, mais detecte une erreur car 0 sur un bord, 
-//01110     il faudrait trouver une autre logique pour reglere ces problemes.
+//01110     il faudrait trouver une autre logique pour regler ces problemes.
 //
 void	check_horizontal(t_info *infos, char **map)
 {
@@ -56,4 +57,6 @@ void	check_horizontal(t_info *infos, char **map)
 			infos->y_start ++;
 		}
 	}
+	if (start_trigger == 0)
+		print_exit_error("No start position found in map");
 }
