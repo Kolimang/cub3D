@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   mlx_destroy_display.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngharian <ngharian@student.s19.be>         #+#  +:+       +#+        */
+/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-02-22 21:50:31 by ngharian          #+#    #+#             */
-/*   Updated: 2025-02-22 21:50:31 by ngharian         ###   ########.fr       */
+/*   Created: 2020/10/03 18:56:35 by mg                #+#    #+#             */
+/*   Updated: 2020/10/04 01:55:35 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cube.h"
+#include "mlx_int.h"
 
-void	print_exit_error(char *message)
+int	mlx_destroy_display(t_xvar *xvar)
 {
-	write(2, "Error!: ", 8);
-	if (message != NULL)
-		write(2, message, ft_strlen(message));
-	exit (1);
+	XCloseDisplay(xvar->display);
 }

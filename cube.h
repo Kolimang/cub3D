@@ -6,54 +6,194 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 20:38:54 by ngharian          #+#    #+#             */
-/*   Updated: 2025/02/24 10:33:43 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/03/27 15:07:25 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUBE_H
 # define CUBE_H
 
-# define FOV 66
-
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdint.h>
+# include <math.h>
+# include <sys/time.h>
 # include "./minilibx-linux/mlx.h"
 # include "./libft/libft.h"
+
+# define FOV 66
+# define TXNO 4
+# define TX_W 64
+# define TX_H 64
+# define TXSIZE 64
+# define WIN_W 1920
+# define WIN_H 1080
+# define NAME "cub3D"
+
+enum
+{
+	ON_KEYPRESS = 2,
+	ON_KEYRELEASE = 3,
+	ON_DESTROY = 17,
+	W_KEY = 119,
+	Z_KEY = 122,
+	A_KEY = 97,
+	Q_KEY = 113,
+	S_KEY = 115,
+	D_KEY = 100,
+	ESC_KEY = 65307,
+	L_ARROW = 65361,
+	R_ARROW = 65363,
+	U_ARROW = 65362,
+	D_ARROW = 65364
+};
+
+typedef struct s_data
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_data;
+
+typedef struct s_moves
+{
+	char	go_fwd;
+	char	go_bckwd;
+	char	strafe_l;
+	char	strafe_r;
+	char	rot_l;
+	char	rot_r;
+}	t_moves;
+
+typedef struct s_rc
+{
+	// raycast stripe (screen x)
+	int				x;
+	// current map cell
+	int				map_x;
+	int				map_y;
+	// ray position and direction
+	double			camera_x;
+	double			ray_dir_x;
+	double			ray_dir_y;
+	// ray calculations
+	double			side_dist_x;
+	double			side_dist_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			perp_wall_dist;
+	int				step_x;
+	int				step_y;
+	// wall hit
+	int				hit;
+	int				side;
+	// texture calculations
+	double			wall_x;
+	int				tx_x;
+	int				tx_y;
+	double			tx_step;
+	double			tx_pos;
+	// draw data
+	int				tx_id;
+	int				line_height;
+	int				draw_start;
+	int				draw_end;
+	uint32_t		color;
+	int				px_index;
+	unsigned char	*px;
+}	t_rc;
+
+typedef struct timeval t_tv;
+
+typedef struct time
+{
+	long	old_time;
+	long	curr_time;
+	t_tv	tv;
+} t_time;
 
 typedef struct s_info
 {
 	int		map_len;
+	int		max_len;
 	int		y_start;
 	int		x_start;
 	char	direction;
 	int		in_map;
 	char	**map;
-	char	*no_texture;
-	char	*so_texture;
-	char	*we_texture;
-	char	*ea_texture;
+	void	*mlx;
+	void	*windw;
+	void	*tx[TXNO];
+	t_rc	*rc;
+	t_data	img;
+	t_data	txtr[4];
+	t_moves	moves;
+	t_time	time;
+	char	*no_tx_path;
+	char	*so_tx_path;
+	char	*we_tx_path;
+	char	*ea_tx_path;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
 	char	*f_color;
 	char	*c_color;
 	int		*c_color_clean;
 	int		*f_color_clean;
+
 }	t_info;
 
-typedef struct s_clean_info
-{
-	int		y_start;
-	int		x_start;
-	char	direction;
-	char	**map;
-	int		*f_color;
-	int		*c_color;
-	//toutes les infos mlx (connection, fenetre, image, etc...)
-	//images textures
-}	t_clean_infos;
+//utils.c
+void	free_print_exit_error(char *message, t_info *infos);
+void	init_infos(t_info *infos);
+void	ft_free(t_info *infos);
 
-
-void	print_exit_error(char *message);
-t_info	parsing(int fd);
+//checking.c
 void	check_infos(t_info *info);
-void	check_horizontal(t_info *infos, char **map);
+void	check_horizontal(t_info *infos, char **map, int i, int start_trigger);
+void	check_vertical(char **map, int i, int j, t_info *infos);
+
+// parsing.c
+void	parsing(t_info *infos, int fd);
+
+// render.c
+int		start_rendering(t_info *infos);
+int		put_img(t_info *infos, int id, int x, int y);
+int		on_destroy(t_info *infos);
+
+// raycast.c
+void	dda_algo(t_info *infos);
+void	get_perp_wall_dist(t_info *infos);
+void	get_stripe_data(t_info *infos);
+int		raycast(t_info *infos);
+
+// raycast_utils.c
+void	get_ray_pos_and_dir(t_info *infos);
+void	get_current_map_cell(t_info *infos);
+void	get_delta_dist(t_info *infos);
+void	get_side_dist(t_info *infos);
+
+// move.c
+int		on_keypress(int key, t_info *infos);
+int		on_keyrelease(int key, t_info *infos);
+void	rotate_r(t_info *infos);
+void	rotate_l(t_info *infos);
+int		move_player(t_info *infos);
+
+// draw.c
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	select_texture(t_info *infos);
+void	get_texture_coord(t_info *infos);
+void	fill_env_color(t_info *infos, int start, int end, int *color);
+void	fill_img(t_info *infos);
+
+// render_utils.c
+void	set_textures(t_info *infos);
+void	set_mlx_screen_img(t_info *infos);
 
 #endif
