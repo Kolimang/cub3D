@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:48:19 by jrichir           #+#    #+#             */
-/*   Updated: 2025/03/27 00:04:13 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/03/28 14:00:41 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int	start_rendering(t_info *infos)
 	mlx_hook(infos->windw, ON_DESTROY, 0, &on_destroy, infos);
 	mlx_hook(infos->windw, ON_KEYRELEASE, 1L << 1, &on_keyrelease, infos);
 	mlx_hook(infos->windw, ON_KEYPRESS, 1L << 0, &on_keypress, infos);
-	//move_player(infos);
 	mlx_loop_hook(infos->mlx, &move_player, infos);
 	mlx_loop(infos->mlx);
 	return (0);

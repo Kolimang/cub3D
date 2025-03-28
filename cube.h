@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 20:38:54 by ngharian          #+#    #+#             */
-/*   Updated: 2025/03/27 15:07:25 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/03/28 13:57:20 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,14 +105,14 @@ typedef struct s_rc
 	unsigned char	*px;
 }	t_rc;
 
-typedef struct timeval t_tv;
+typedef struct timeval	t_tv;
 
 typedef struct time
 {
 	long	old_time;
 	long	curr_time;
 	t_tv	tv;
-} t_time;
+}	t_time;
 
 typedef struct s_info
 {

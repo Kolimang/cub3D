@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:52:33 by jrichir           #+#    #+#             */
-/*   Updated: 2025/03/27 15:07:09 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/03/28 14:01:21 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int	raycast(t_info *infos)
 		, 0, 0) < 0)
 		free_print_exit_error("mlx_put_image_to_window() failed.", infos);
 	gettimeofday(&infos->time.tv, NULL);
-	infos->time.old_time = infos->time.tv.tv_sec * 1000 + infos->time.tv.tv_usec / 1000;
+	infos->time.old_time = infos->time.tv.tv_sec * 1000
+		+ infos->time.tv.tv_usec / 1000;
 	return (0);
 }

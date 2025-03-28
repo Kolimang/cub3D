@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 21:50:31 by ngharian          #+#    #+#             */
-/*   Updated: 2025/03/27 13:45:10 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/03/28 14:00:11 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,11 @@ void	init_infos(t_info *infos)
 	infos->tx[1] = NULL;
 	infos->tx[2] = NULL;
 	infos->tx[3] = NULL;
+	init_infos_moves_and_time(infos);
+}
+
+void	init_infos_moves_and_time(t_info *infos)
+{
 	infos->moves.go_fwd = 0;
 	infos->moves.go_bckwd = 0;
 	infos->moves.strafe_l = 0;
