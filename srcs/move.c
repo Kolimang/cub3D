@@ -6,7 +6,7 @@
 /*   By: ngharian <ngharian@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:52:33 by jrichir           #+#    #+#             */
-/*   Updated: 2025/03/28 14:31:16 by ngharian         ###   ########.fr       */
+/*   Updated: 2025/03/28 15:09:04 by ngharian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	displace_u(t_info *infos, double close_walls)
 {
 	double	move_speed;
 
-	move_speed = infos->frame_time * 4.0;
+	move_speed = infos->frame_time * 5.0;
 	if (infos->map[(int)(infos->pos_x + infos->dir_x * move_speed)] \
 		[(int)(infos->pos_y)] == '0' && infos->map[(int)(infos->pos_x \
 		+ infos->dir_x * move_speed * close_walls)][(int)(infos->pos_y)] == '0')
@@ -79,8 +79,6 @@ int	move_player(t_info *infos)
 	double	close_walls;
 
 	close_walls = 1.75;
-	if (infos->frame_time > 0.09)
-		infos->frame_time = 0.09;
 	if (infos->moves.go_fwd == 1)
 		displace_u(infos, close_walls);
 	else if (infos->moves.go_bckwd == 1)
@@ -93,11 +91,6 @@ int	move_player(t_info *infos)
 		rotate_r(infos);
 	else if (infos->moves.rot_l == 1)
 		rotate_l(infos);
-	if (infos->moves.go_fwd == 1 || infos->moves.go_bckwd == 1
-		|| infos->moves.strafe_r == 1
-		|| infos->moves.strafe_l == 1
-		|| infos->moves.rot_r == 1
-		|| infos->moves.rot_l == 1)
-		raycast(infos);
+	raycast(infos);
 	return (0);
 }
