@@ -1,7 +1,7 @@
-NO img/north2.xpm
-SO img/south2.xpm
-WE img/west2.xpm
-EA img/east2.xpm
+NO img/north1.xpm
+SO img/south1.xpm
+WE img/west1.xpm
+EA img/east1.xpm
 
 F 40,36,32
 C 20,30,50

@@ -1,11 +1,11 @@
-NO img/north2.xpm
-SO img/south2.xpm
-WE img/west2.xpm
-EA img/east2.xpm
+NO img/brickgreen.xpm
+SO img/brickyellow.xpm
+WE img/brickblue.xpm
+EA img/brickred.xpm
 
 
-F 150,100,0
-C 125,30,0
+F 190,160,160
+C 175,180,210
 
 11111111111111
 10000000100101
