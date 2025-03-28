@@ -1,2 +1,2 @@
-# cub3d
-Cub3d - 42 school project
+# cub3D
+cub3D - 42 school project
