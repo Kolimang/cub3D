@@ -6,7 +6,7 @@
 #    By: ngharian <ngharian@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/19 11:55:49 by jrichir           #+#    #+#              #
-#    Updated: 2025/03/26 13:11:52 by ngharian         ###   ########.fr        #
+#    Updated: 2025/03/28 14:14:58 by ngharian         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS =  ./srcs/main.c \
 		./srcs/raycast_utils.c \
 		./srcs/draw.c \
 		./srcs/render_utils.c \
+		./srcs/key_press_release.c \
 		./srcs/move.c \
 		./srcs/rotate.c
 

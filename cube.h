@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
+/*   By: ngharian <ngharian@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 20:38:54 by ngharian          #+#    #+#             */
-/*   Updated: 2025/03/28 13:57:20 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/03/28 14:51:07 by ngharian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,95 +105,92 @@ typedef struct s_rc
 	unsigned char	*px;
 }	t_rc;
 
-typedef struct timeval	t_tv;
-
-typedef struct time
-{
-	long	old_time;
-	long	curr_time;
-	t_tv	tv;
-}	t_time;
-
 typedef struct s_info
 {
-	int		map_len;
-	int		max_len;
-	int		y_start;
-	int		x_start;
-	char	direction;
-	int		in_map;
-	char	**map;
-	void	*mlx;
-	void	*windw;
-	void	*tx[TXNO];
-	t_rc	*rc;
-	t_data	img;
-	t_data	txtr[4];
-	t_moves	moves;
-	t_time	time;
-	char	*no_tx_path;
-	char	*so_tx_path;
-	char	*we_tx_path;
-	char	*ea_tx_path;
-	double	pos_x;
-	double	pos_y;
-	double	dir_x;
-	double	dir_y;
-	double	plane_x;
-	double	plane_y;
-	char	*f_color;
-	char	*c_color;
-	int		*c_color_clean;
-	int		*f_color_clean;
+	int			map_len;
+	int			max_len;
+	int			y_start;
+	int			x_start;
+	char		direction;
+	int			in_map;
+	char		**map;
+	void		*mlx;
+	void		*windw;
+	void		*tx[TXNO];
+	t_rc		*rc;
+	t_data		img;
+	t_data		txtr[4];
+	t_moves		moves;
+	char		*no_tx_path;
+	char		*so_tx_path;
+	char		*we_tx_path;
+	char		*ea_tx_path;
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+	char		*f_color;
+	char		*c_color;
+	int			*c_color_clean;
+	int			*f_color_clean;
+	uint64_t	time;
+	uint64_t	old_time;
+	double		frame_time;
 
 }	t_info;
 
 //utils.c
-void	free_print_exit_error(char *message, t_info *infos);
-void	init_infos(t_info *infos);
-void	ft_free(t_info *infos);
+void		free_print_exit_error(char *message, t_info *infos);
+void		init_infos(t_info *infos);
+void		ft_free(t_info *infos);
 
 //checking.c
-void	check_infos(t_info *info);
-void	check_horizontal(t_info *infos, char **map, int i, int start_trigger);
-void	check_vertical(char **map, int i, int j, t_info *infos);
+void		check_infos(t_info *info);
+void		check_horizontal(t_info *infos, char **map, int i \
+					, int start_trigger);
+void		check_vertical(char **map, int i, int j, t_info *infos);
 
 // parsing.c
-void	parsing(t_info *infos, int fd);
+void		parsing(t_info *infos, int fd);
 
 // render.c
-int		start_rendering(t_info *infos);
-int		put_img(t_info *infos, int id, int x, int y);
-int		on_destroy(t_info *infos);
+int			start_rendering(t_info *infos);
+int			put_img(t_info *infos, int id, int x, int y);
+int			on_destroy(t_info *infos);
 
 // raycast.c
-void	dda_algo(t_info *infos);
-void	get_perp_wall_dist(t_info *infos);
-void	get_stripe_data(t_info *infos);
-int		raycast(t_info *infos);
+void		dda_algo(t_info *infos);
+void		get_perp_wall_dist(t_info *infos);
+void		get_stripe_data(t_info *infos);
+int			raycast(t_info *infos);
 
 // raycast_utils.c
-void	get_ray_pos_and_dir(t_info *infos);
-void	get_current_map_cell(t_info *infos);
-void	get_delta_dist(t_info *infos);
-void	get_side_dist(t_info *infos);
+void		get_ray_pos_and_dir(t_info *infos);
+void		get_current_map_cell(t_info *infos);
+void		get_delta_dist(t_info *infos);
+void		get_side_dist(t_info *infos);
+
+//key_press_and_release.c
+int			on_keypress(int key, t_info *infos);
+int			on_keyrelease(int key, t_info *infos);
 
 // move.c
-int		on_keypress(int key, t_info *infos);
-int		on_keyrelease(int key, t_info *infos);
-void	rotate_r(t_info *infos);
-void	rotate_l(t_info *infos);
-int		move_player(t_info *infos);
+void		rotate_r(t_info *infos);
+void		rotate_l(t_info *infos);
+int			move_player(t_info *infos);
 
 // draw.c
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void	select_texture(t_info *infos);
-void	get_texture_coord(t_info *infos);
-void	fill_env_color(t_info *infos, int start, int end, int *color);
-void	fill_img(t_info *infos);
+void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void		select_texture(t_info *infos);
+void		get_texture_coord(t_info *infos);
+void		fill_env_color(t_info *infos, int start, int end, int *color);
+void		fill_img(t_info *infos);
 
 // render_utils.c
-void	set_textures(t_info *infos);
-void	set_mlx_screen_img(t_info *infos);
+void		set_textures(t_info *infos);
+void		set_mlx_screen_img(t_info *infos);
+uint64_t	get_time_ms(void);
 
 #endif
