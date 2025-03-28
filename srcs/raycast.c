@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
+/*   By: ngharian <ngharian@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:52:33 by jrichir           #+#    #+#             */
-/*   Updated: 2025/03/27 15:07:09 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/03/28 14:16:34 by ngharian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	dda_algo(t_info *infos)
 			rc->map_y += rc->step_y;
 			rc->side = 1;
 		}
-		if (infos->map[rc->map_x][rc->map_y] > '0')
+		if (infos->map[rc->map_x][rc->map_y] == '1')
 			rc->hit = 1;
 	}
 }
@@ -67,6 +67,29 @@ void	get_stripe_data(t_info *infos)
 		rc->draw_end = WIN_H;
 }
 
+void	put_fps_win(t_info *infos)
+{
+	int		fps;
+	char	*fps_char;
+	char	*text_to_push;
+	int		i;
+	int		j;
+
+	i = -1;
+	fps = (int)(1 / infos->frame_time);
+	fps_char = ft_itoa(fps);
+	text_to_push = ft_strjoin(fps_char, " FPS");
+	free(fps_char);
+	while (++i < 2)
+	{
+		j = -1;
+		while (++j < 2)
+			mlx_string_put(infos->mlx, infos->windw, 45 + i, 45 + j \
+						, 0xFFFFFF, text_to_push);
+	}
+	free(text_to_push);
+}
+
 int	raycast(t_info *infos)
 {
 	t_rc	*rc;
@@ -89,7 +112,9 @@ int	raycast(t_info *infos)
 	if (mlx_put_image_to_window(infos->mlx, infos->windw, infos->img.img \
 		, 0, 0) < 0)
 		free_print_exit_error("mlx_put_image_to_window() failed.", infos);
-	gettimeofday(&infos->time.tv, NULL);
-	infos->time.old_time = infos->time.tv.tv_sec * 1000 + infos->time.tv.tv_usec / 1000;
+	infos->old_time = infos->time;
+	infos->time = get_time_ms();
+	infos->frame_time = (infos->time - infos->old_time) / 1000.0;
+	put_fps_win(infos);
 	return (0);
 }

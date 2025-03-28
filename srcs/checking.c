@@ -6,7 +6,7 @@
 /*   By: ngharian <ngharian@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 11:35:02 by ngharian          #+#    #+#             */
-/*   Updated: 2025/03/26 14:38:05 by ngharian         ###   ########.fr       */
+/*   Updated: 2025/03/28 14:21:35 by ngharian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ static int	*clean_color(char *color, int i, t_info *infos, int count)
 {
 	int		*buffer;
 
-	check_rgb(color, infos);
 	buffer = malloc(sizeof(int) * 3);
 	if (!buffer)
 		free_print_exit_error("Malloc failure.", infos);
@@ -80,6 +79,8 @@ static int	*clean_color(char *color, int i, t_info *infos, int count)
 	while (++count < 3 && color[i] != '\0')
 	{
 		buffer[count] = ft_atoi(color + i);
+		while (ft_isspace(color[i]))
+			++i;
 		if (!ft_isdigit(color[i]))
 			free_print_exit_error("Invalid RGB value.", infos);
 		while (ft_isdigit(color[i]))
@@ -89,8 +90,7 @@ static int	*clean_color(char *color, int i, t_info *infos, int count)
 		if (color[i] == ',')
 			++i;
 	}
-	free(color);
-	return (buffer);
+	return (free(color), buffer);
 }
 
 void	check_infos(t_info *infos)
@@ -101,7 +101,9 @@ void	check_infos(t_info *infos)
 	infos->so_tx_path = clean_texture(infos->so_tx_path, 0, 0, infos);
 	infos->ea_tx_path = clean_texture(infos->ea_tx_path, 0, 0, infos);
 	infos->we_tx_path = clean_texture(infos->we_tx_path, 0, 0, infos);
+	check_rgb(infos->c_color, infos);
 	infos->c_color_clean = clean_color(infos->c_color, 0, infos, -1);
+	check_rgb(infos->f_color, infos);
 	infos->f_color_clean = clean_color(infos->f_color, 0, infos, -1);
 	color = infos->c_color_clean;
 	if (color[0] < 0 || color[0] > 255 || color[1] < 0 || color[1] > 255

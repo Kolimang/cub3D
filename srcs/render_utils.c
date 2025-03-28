@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   misc.c                                             :+:      :+:    :+:   */
+/*   render_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngharian <ngharian@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:52:33 by jrichir           #+#    #+#             */
-/*   Updated: 2025/03/26 10:42:37 by ngharian         ###   ########.fr       */
+/*   Updated: 2025/03/28 14:22:08 by ngharian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,14 @@ void	set_textures(t_info *infos)
 	if (infos->txtr[0].addr == NULL || infos->txtr[1].addr == NULL
 		|| infos->txtr[2].addr == NULL || infos->txtr[3].addr == NULL)
 		free_print_exit_error("mlx_get_data_address() failed.", infos);
+}
+
+uint64_t	get_time_ms(void)
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return ((uint64_t)(tv.tv_sec * 1000) + (uint64_t)(tv.tv_usec / 1000));
 }
 
 void	set_mlx_screen_img(t_info *infos)

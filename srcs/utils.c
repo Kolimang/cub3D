@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
+/*   By: ngharian <ngharian@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 21:50:31 by ngharian          #+#    #+#             */
-/*   Updated: 2025/03/27 13:45:10 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/03/28 14:20:20 by ngharian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,18 @@ void	ft_free(t_info *infos)
 	free(infos);
 }
 
+void	init_movements(t_info *infos)
+{
+	infos->moves.go_fwd = 0;
+	infos->moves.go_bckwd = 0;
+	infos->moves.strafe_l = 0;
+	infos->moves.strafe_r = 0;
+	infos->moves.rot_l = 0;
+	infos->moves.rot_r = 0;
+	infos->time = get_time_ms();
+	infos->old_time = 0;
+}
+
 void	init_infos(t_info *infos)
 {
 	infos->map = NULL;
@@ -94,12 +106,5 @@ void	init_infos(t_info *infos)
 	infos->tx[1] = NULL;
 	infos->tx[2] = NULL;
 	infos->tx[3] = NULL;
-	infos->moves.go_fwd = 0;
-	infos->moves.go_bckwd = 0;
-	infos->moves.strafe_l = 0;
-	infos->moves.strafe_r = 0;
-	infos->moves.rot_l = 0;
-	infos->moves.rot_r = 0;
-	infos->time.curr_time = 0;
-	infos->time.old_time = 0;
+	init_movements(infos);
 }
