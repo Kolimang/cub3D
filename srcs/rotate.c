@@ -6,7 +6,7 @@
 /*   By: ngharian <ngharian@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 18:05:13 by ngharian          #+#    #+#             */
-/*   Updated: 2025/03/29 18:30:50 by ngharian         ###   ########.fr       */
+/*   Updated: 2025/03/29 18:41:50 by ngharian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,12 @@ int	mouse_rotate(t_info *infos, int x)
 int	mouse_moved(int x, int y, t_info *infos)
 {
 	
-    int delta_x;
+	int delta_x;
 
-    delta_x = x - infos->moves.prev_mouse_x;
-    infos->moves.mouse_rotation = -delta_x;
-    infos->moves.mouse_move = 1;
-	infos->moves.prev_mouse_x = x;
-    ++y;
+    delta_x = x - infos->moves.prev_mouse_x; // Calcul du déplacement relatif
+    infos->moves.mouse_rotation = -delta_x; // Stocker le déplacement relatif
+    infos->moves.mouse_move = 1; // Indiquer qu'un mouvement a eu lieu
+    infos->moves.prev_mouse_x = x; // Mettre à jour la position précédente
+    ++y; 
     return (0);
 }
