@@ -6,7 +6,7 @@
 #    By: ngharian <ngharian@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/19 11:55:49 by jrichir           #+#    #+#              #
-#    Updated: 2025/03/28 14:53:46 by ngharian         ###   ########.fr        #
+#    Updated: 2025/03/29 12:15:54 by ngharian         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ HEADER = cub3d.h
 
 OBJECTS = $(SRCS:%.c=%.o)
 
-CFLAGS = -g -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror #-fsanitize=address
 
 CC = cc
 
