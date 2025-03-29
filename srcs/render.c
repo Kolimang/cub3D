@@ -6,7 +6,7 @@
 /*   By: ngharian <ngharian@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:48:19 by jrichir           #+#    #+#             */
-/*   Updated: 2025/03/28 14:49:39 by ngharian         ###   ########.fr       */
+/*   Updated: 2025/03/29 18:21:20 by ngharian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,9 @@ int	start_rendering(t_info *infos)
 	set_textures(infos);
 	set_mlx_screen_img(infos);
 	raycast(infos);
+	mlx_mouse_hide(infos->mlx, infos->windw);
 	mlx_hook(infos->windw, ON_DESTROY, 0, &on_destroy, infos);
+    mlx_hook(infos->windw, 6, (1L << 6), &mouse_moved, infos);
 	mlx_hook(infos->windw, ON_KEYRELEASE, 1L << 1, &on_keyrelease, infos);
 	mlx_hook(infos->windw, ON_KEYPRESS, 1L << 0, &on_keypress, infos);
 	mlx_loop_hook(infos->mlx, &move_player, infos);

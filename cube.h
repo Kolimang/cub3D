@@ -6,7 +6,7 @@
 /*   By: ngharian <ngharian@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 20:38:54 by ngharian          #+#    #+#             */
-/*   Updated: 2025/03/28 15:02:48 by ngharian         ###   ########.fr       */
+/*   Updated: 2025/03/29 18:28:11 by ngharian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,9 @@ typedef struct s_moves
 	char	strafe_r;
 	char	rot_l;
 	char	rot_r;
+	int		mouse_rotation;
+	int		mouse_move;
+	int		prev_mouse_x;
 }	t_moves;
 
 typedef struct s_rc
@@ -179,6 +182,8 @@ int			on_keyrelease(int key, t_info *infos);
 // move.c
 void		rotate_r(t_info *infos);
 void		rotate_l(t_info *infos);
+int			mouse_rotate(t_info *infos, int x);
+int			mouse_moved(int x, int y, t_info *infos);
 int			move_player(t_info *infos);
 
 // draw.c

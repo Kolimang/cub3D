@@ -6,7 +6,7 @@
 /*   By: ngharian <ngharian@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:52:33 by jrichir           #+#    #+#             */
-/*   Updated: 2025/03/28 15:09:04 by ngharian         ###   ########.fr       */
+/*   Updated: 2025/03/29 18:22:46 by ngharian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,11 @@ int	move_player(t_info *infos)
 		rotate_r(infos);
 	else if (infos->moves.rot_l == 1)
 		rotate_l(infos);
+	else if(infos->moves.mouse_move == 1)
+	{
+		mouse_rotate(infos, infos->moves.mouse_rotation);
+		infos->moves.mouse_move = 0;
+	}
 	raycast(infos);
 	return (0);
 }
