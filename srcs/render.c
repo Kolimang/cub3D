@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngharian <ngharian@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:48:19 by jrichir           #+#    #+#             */
-/*   Updated: 2025/03/30 12:07:11 by ngharian         ###   ########.fr       */
+/*   Updated: 2025/03/31 15:54:35 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,23 @@ static int	create_window(t_info *infos)
 	if (!(infos->windw))
 		free_print_exit_error("mlx_new_window() failed", infos);
 	return (0);
+}
+
+static int	load_anim_textures(t_info *infos)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	if (infos->no_tx_nb > 1)
+	{
+		while (i < no_tx_nb)
+		{
+			infos->tx[0][i] = mlx_xpm_file_to_image(infos->mlx,
+			infos->no_tx_path, &size, &size);
+			i++;
+		}
+	}
 }
 
 static int	load_textures(t_info *infos)
