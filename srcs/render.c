@@ -66,10 +66,11 @@ int	start_rendering(t_info *infos)
 	mlx_mouse_move(infos->mlx, infos->windw, WIN_W / 2, WIN_H / 2);
 	mlx_mouse_hide(infos->mlx, infos->windw);
 	mlx_hook(infos->windw, ON_DESTROY, 0, &on_destroy, infos);
-	mlx_hook(infos->windw, 6, (1L << 6), &mouse_moved, infos);
+	mlx_hook(infos->windw, MOUSE_MOVE, (1L << 6), &mouse_moved, infos);
 	mlx_hook(infos->windw, ON_KEYRELEASE, 1L << 1, &on_keyrelease, infos);
 	mlx_hook(infos->windw, ON_KEYPRESS, 1L << 0, &on_keypress, infos);
 	mlx_loop_hook(infos->mlx, &move_player, infos);
 	mlx_loop(infos->mlx);
+	write(1, "i\n", 2);
 	return (0);
 }

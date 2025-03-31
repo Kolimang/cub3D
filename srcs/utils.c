@@ -82,6 +82,7 @@ void	init_movements(t_info *infos)
 	infos->old_time = 0;
 	infos->moves.prev_mouse_x = WIN_W / 2;
 	infos->moves.trigger = 0;
+	infos->moves.win_focus = 1;
 }
 
 void	init_infos(t_info *infos)

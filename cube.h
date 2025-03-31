@@ -52,7 +52,9 @@ enum
 	L_ARROW = 65361,
 	R_ARROW = 65363,
 	U_ARROW = 65362,
-	D_ARROW = 65364
+	D_ARROW = 65364,
+	MOUSE_MOVE = 6,
+	X_KEY = 120
 };
 
 typedef struct s_data
@@ -76,6 +78,7 @@ typedef struct s_moves
 	int		mouse_move;
 	int		prev_mouse_x;
 	int		trigger;
+	int		win_focus;
 }	t_moves;
 
 typedef struct s_rc
@@ -193,6 +196,7 @@ void		rotate_l(t_info *infos);
 int			mouse_rotate(t_info *infos, int x);
 int			mouse_moved(int x, int y, t_info *infos);
 int			move_player(t_info *infos);
+int			mouse_focus(t_info *infos);
 
 // draw.c
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
