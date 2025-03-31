@@ -68,6 +68,7 @@ typedef struct s_moves
 	int		mouse_rotation;
 	int		mouse_move;
 	int		prev_mouse_x;
+	int		trigger;
 }	t_moves;
 
 typedef struct s_rc

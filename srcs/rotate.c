@@ -68,11 +68,19 @@ int	mouse_rotate(t_info *infos, int x)
 int	mouse_moved(int x, int y, t_info *infos)
 {
 	int	delta_x;
+	int	mouse_x;
+	int	mouse_y;
 
+	mlx_mouse_get_pos(infos->mlx, infos->windw, &mouse_x, &mouse_y);
+	if (mouse_x == WIN_W / 2 || infos->moves.trigger == 1)
+		return (0);
 	delta_x = x - infos->moves.prev_mouse_x;
-	infos->moves.mouse_rotation = -delta_x;
 	infos->moves.mouse_move = 1;
-	infos->moves.prev_mouse_x = x;
+	infos->moves.trigger = 1;
+	mlx_mouse_move(infos->mlx, infos->windw, WIN_W / 2, WIN_H / 2);
+	infos->moves.mouse_rotation = -delta_x;
+	infos->moves.prev_mouse_x = WIN_W / 2;
+	infos->moves.trigger = 0;
 	++y;
 	return (0);
 }
