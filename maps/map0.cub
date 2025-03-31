@@ -1,10 +1,10 @@
-NO img/north1.xpm
-SO img/south1.xpm
-WE img/west1.xpm
-EA img/east1.xpm
+NO img/0w1.xpm
+SO img/0w2.xpm
+WE img/0w3.xpm
+EA img/0w4.xpm
 
-F 120,230,130
-C 100,150,225
+F 50,30,13
+C 50,70,160
 
 111
 1S1
