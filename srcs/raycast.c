@@ -90,10 +90,8 @@ void	put_fps_win(t_info *infos)
 	free(text_to_push);
 }
 
-int	raycast(t_info *infos)
+int	raycast(t_info *infos, t_rc *rc)
 {
-	t_rc	*rc;
-
 	rc = infos->rc;
 	rc->x = -1;
 	while (++rc->x < WIN_W)
@@ -115,6 +113,7 @@ int	raycast(t_info *infos)
 	infos->old_time = infos->time;
 	infos->time = get_time_ms();
 	infos->frame_time = (infos->time - infos->old_time) / 1000.0;
+	draw_minimap(infos);
 	put_fps_win(infos);
 	return (0);
 }

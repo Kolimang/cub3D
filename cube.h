@@ -21,6 +21,7 @@
 # include "./minilibx-linux/mlx.h"
 # include "./libft/libft.h"
 
+//contexte d'affichage
 # define FOV 66
 # define TXNO 4
 # define TX_W 64
@@ -30,6 +31,12 @@
 # define WIN_H 1080
 # define NAME "cub3D"
 
+//couleurs mini-map
+# define WALL_C 0x00FFB3B3
+# define FLOOR_C 0x00FFCCFF
+# define PLAYER_C 0x00FF6666
+
+//key_hook
 enum
 {
 	ON_KEYPRESS = 2,
@@ -168,7 +175,7 @@ int			on_destroy(t_info *infos);
 void		dda_algo(t_info *infos);
 void		get_perp_wall_dist(t_info *infos);
 void		get_stripe_data(t_info *infos);
-int			raycast(t_info *infos);
+int			raycast(t_info *infos, t_rc *rc);
 
 // raycast_utils.c
 void		get_ray_pos_and_dir(t_info *infos);
@@ -198,5 +205,6 @@ void		fill_img(t_info *infos);
 void		set_textures(t_info *infos);
 void		set_mlx_screen_img(t_info *infos);
 uint64_t	get_time_ms(void);
+void		draw_minimap(t_info *infos);
 
 #endif

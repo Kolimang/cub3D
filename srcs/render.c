@@ -62,7 +62,7 @@ int	start_rendering(t_info *infos)
 	load_textures(infos);
 	set_textures(infos);
 	set_mlx_screen_img(infos);
-	raycast(infos);
+	raycast(infos, NULL);
 	mlx_mouse_move(infos->mlx, infos->windw, WIN_W / 2, WIN_H / 2);
 	mlx_mouse_hide(infos->mlx, infos->windw);
 	mlx_hook(infos->windw, ON_DESTROY, 0, &on_destroy, infos);

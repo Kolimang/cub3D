@@ -96,6 +96,6 @@ int	move_player(t_info *infos)
 		mouse_rotate(infos, infos->moves.mouse_rotation);
 		infos->moves.mouse_move = 0;
 	}
-	raycast(infos);
+	raycast(infos, NULL);
 	return (0);
 }

@@ -22,6 +22,7 @@ SRCS =  ./srcs/main.c \
 		./srcs/raycast_utils.c \
 		./srcs/draw.c \
 		./srcs/render_utils.c \
+		./srcs/mini_map.c \
 		./srcs/key_press_release.c \
 		./srcs/move.c \
 		./srcs/rotate.c
@@ -30,7 +31,7 @@ HEADER = cub3d.h
 
 OBJECTS = $(SRCS:%.c=%.o)
 
-CFLAGS = -g -Wall -Wextra -Werror #-fsanitize=thread
+CFLAGS = -g -Wall -Wextra -Werror
 
 CC = cc
 
