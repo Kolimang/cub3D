@@ -113,7 +113,7 @@ int	raycast(t_info *infos, t_rc *rc)
 	infos->old_time = infos->time;
 	infos->time = get_time_ms();
 	infos->frame_time = (infos->time - infos->old_time) / 1000.0;
-	draw_minimap(infos);
+	draw_minimap(infos, -1);
 	put_fps_win(infos);
 	return (0);
 }

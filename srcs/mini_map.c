@@ -26,14 +26,12 @@ static void	draw_square(t_info *infos, int x, int y, int color)
 	}
 }
 
-void	draw_minimap(t_info *infos)
+void	draw_minimap(t_info *infos, int i)
 {
-	int	i;
 	int	j;
 	int	round_x;
 	int	round_y;
 
-	i = -1;
 	round_x = round(infos->pos_x - 0.5);
 	round_y = round(infos->pos_y - 0.5);
 	while (infos->map[++i])

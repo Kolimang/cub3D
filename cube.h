@@ -217,6 +217,6 @@ void		fill_img(t_info *infos);
 void		set_textures(t_info *infos);
 void		set_mlx_screen_img(t_info *infos);
 uint64_t	get_time_ms(void);
-void		draw_minimap(t_info *infos);
+void		draw_minimap(t_info *infos, int i);
 
 #endif

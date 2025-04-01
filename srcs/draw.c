@@ -46,7 +46,6 @@ void	select_texture(t_info *infos)
 		else
 			rc->tx_id = 2;
 	}
-	
 	if (infos->map[rc->map_x][rc->map_y] == '2')
 		rc->tx_id = 4;
 }
@@ -84,26 +83,12 @@ void	fill_env_color(t_info *infos, int start, int end, int *col)
 		my_mlx_pixel_put(&infos->img, rc->x, y, rc->color);
 }
 
-int	is_color_opac_black(int color)
-{
-	unsigned char a = (color >> 24) & 0xFF; // Composante alpha
-	unsigned char r = (color >> 16) & 0xFF; // Composante rouge
-    unsigned char g = (color >> 8) & 0xFF;  // Composante verte
-    unsigned char b = color & 0xFF;
-	ft_printf("R=%u, G=%u, B=%u, A=%u\n", r, g, b, a);
-	if (a == 255 && r == 0 && g == 0 && b == 0)
-		return (1);
-	return (0);
-}
-
 // Cast the texture coordinate to integer, and mask
 // with (TX_H - 1) in case of overflow
-
 void	fill_img(t_info *infos)
 {
 	int		y;
 	t_rc	*rc;
-	//int		color;
 
 	rc = infos->rc;
 	y = rc->draw_start;

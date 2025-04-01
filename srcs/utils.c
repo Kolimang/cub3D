@@ -37,7 +37,7 @@ static void	ft_free_mlx(t_info *infos)
 		mlx_destroy_image(infos->mlx, infos->tx[3]);
 	if (infos->windw != NULL)
 		mlx_destroy_window(infos->mlx, infos->windw);
-	if(infos->tx[4] != NULL)
+	if (infos->tx[4] != NULL)
 		mlx_destroy_image(infos->mlx, infos->tx[4]);
 	mlx_destroy_display(infos->mlx);
 	free(infos->mlx);

@@ -30,7 +30,7 @@ void	set_textures(t_info *infos)
 			&infos->txtr[4].bits_per_pixel, &infos->txtr[4].line_length,
 			&infos->txtr[4].endian);
 	if (infos->txtr[0].addr == NULL || infos->txtr[1].addr == NULL
-		|| infos->txtr[2].addr == NULL || infos->txtr[3].addr == NULL 
+		|| infos->txtr[2].addr == NULL || infos->txtr[3].addr == NULL
 		|| infos->txtr[4].addr == NULL)
 		free_print_exit_error("mlx_get_data_address() failed.", infos);
 }

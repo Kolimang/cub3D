@@ -26,7 +26,8 @@ void	open_close_door(t_info *infos)
 		{
 			if (infos->map[x][y] == '2')
 				infos->map[x][y] = '3';
-			else if (infos->map[x][y] == '3')
+			else if (infos->map[x][y] == '3' && infos->pos_x != (double)x
+					&& (int)infos->pos_y != (double)y)
 				infos->map[x][y] = '2';
 			++y;
 		}
