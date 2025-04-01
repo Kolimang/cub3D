@@ -14,10 +14,6 @@
 
 void	set_textures(t_info *infos)
 {
-	infos->txtr[0].img = infos->tx[0];
-	infos->txtr[1].img = infos->tx[1];
-	infos->txtr[2].img = infos->tx[2];
-	infos->txtr[3].img = infos->tx[3];
 	infos->txtr[0].addr = mlx_get_data_addr(infos->txtr[0].img,
 			&infos->txtr[0].bits_per_pixel, &infos->txtr[0].line_length,
 			&infos->txtr[0].endian);
@@ -30,8 +26,12 @@ void	set_textures(t_info *infos)
 	infos->txtr[3].addr = mlx_get_data_addr(infos->txtr[3].img,
 			&infos->txtr[3].bits_per_pixel, &infos->txtr[3].line_length,
 			&infos->txtr[3].endian);
+	infos->txtr[4].addr = mlx_get_data_addr(infos->txtr[4].img,
+			&infos->txtr[4].bits_per_pixel, &infos->txtr[4].line_length,
+			&infos->txtr[4].endian);
 	if (infos->txtr[0].addr == NULL || infos->txtr[1].addr == NULL
-		|| infos->txtr[2].addr == NULL || infos->txtr[3].addr == NULL)
+		|| infos->txtr[2].addr == NULL || infos->txtr[3].addr == NULL 
+		|| infos->txtr[4].addr == NULL)
 		free_print_exit_error("mlx_get_data_address() failed.", infos);
 }
 

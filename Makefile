@@ -11,8 +11,7 @@
 # **************************************************************************** #
 
 NAME = cub3D
-
-SRCS =  ./srcs/main.c \
+SRCS =	./srcs/main.c \
 		./srcs/utils.c \
 		./srcs/parsing.c \
 		./srcs/checking.c \
@@ -31,7 +30,7 @@ HEADER = cub3d.h
 
 OBJECTS = $(SRCS:%.c=%.o)
 
-CFLAGS = -g -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror #-fsanitize=address
 
 CC = cc
 

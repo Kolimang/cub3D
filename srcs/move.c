@@ -26,6 +26,15 @@ void	displace_u(t_info *infos, double close_walls)
 		&& infos->map[(int)(infos->pos_x)][(int)(infos->pos_y + infos->dir_y \
 		* move_speed * close_walls)] == '0')
 		infos->pos_y += infos->dir_y * move_speed;
+	if (infos->map[(int)(infos->pos_x + infos->dir_x * move_speed)] \
+		[(int)(infos->pos_y)] == '3' && infos->map[(int)(infos->pos_x \
+		+ infos->dir_x * move_speed)][(int)(infos->pos_y)] == '3')
+		infos->pos_x += infos->dir_x * move_speed;
+	if (infos->map[(int)(infos->pos_x)][(int)
+		(infos->pos_y + infos->dir_y * move_speed)] == '3' \
+		&& infos->map[(int)(infos->pos_x)][(int)(infos->pos_y + infos->dir_y \
+		* move_speed)] == '3')
+		infos->pos_y += infos->dir_y * move_speed;
 }
 
 void	displace_d(t_info *infos, double close_walls)
@@ -42,6 +51,15 @@ void	displace_d(t_info *infos, double close_walls)
 		* move_speed)] == '0' && infos->map[(int)(infos->pos_x)][\
 		(int)(infos->pos_y - infos->dir_y * move_speed * close_walls)] == '0')
 		infos->pos_y -= infos->dir_y * move_speed;
+	if (infos->map[(int)(infos->pos_x - infos->dir_x * move_speed)] \
+		[(int)(infos->pos_y)] == '3' && infos->map \
+		[(int)(infos->pos_x - infos->dir_x * move_speed)] \
+		[(int)(infos->pos_y)] == '3')
+		infos->pos_x -= infos->dir_x * move_speed;
+	if (infos->map[(int)(infos->pos_x)][(int)(infos->pos_y - infos->dir_y \
+		* move_speed)] == '3' && infos->map[(int)(infos->pos_x)][\
+		(int)(infos->pos_y - infos->dir_y * move_speed)] == '3')
+		infos->pos_y -= infos->dir_y * move_speed;
 }
 
 void	displace_l(t_info *infos, double close_walls)
@@ -57,6 +75,14 @@ void	displace_l(t_info *infos, double close_walls)
 		move_speed)] == '0' && infos->map[(int)(infos->pos_x)][(int) \
 		(infos->pos_y - infos->plane_y * move_speed * close_walls)] == '0')
 		infos->pos_y -= infos->plane_y * move_speed;
+	if (infos->map[(int)(infos->pos_x - infos->plane_x * move_speed)][(int) \
+		(infos->pos_y)] == '3' && infos->map[(int)(infos->pos_x - \
+		infos->plane_x * move_speed)][(int)(infos->pos_y)] == '3')
+		infos->pos_x -= infos->plane_x * move_speed;
+	if (infos->map[(int)(infos->pos_x)][(int)(infos->pos_y - infos->plane_y * \
+		move_speed)] == '3' && infos->map[(int)(infos->pos_x)][(int) \
+		(infos->pos_y - infos->plane_y * move_speed)] == '3')
+		infos->pos_y -= infos->plane_y * move_speed;
 }
 
 void	displace_r(t_info *infos, double close_walls)
@@ -71,6 +97,14 @@ void	displace_r(t_info *infos, double close_walls)
 	if (infos->map[(int)(infos->pos_x)][(int)(infos->pos_y + infos->plane_y \
 		* move_speed)] == '0' && infos->map[(int)(infos->pos_x)][(int) \
 		(infos->pos_y + infos->plane_y * move_speed * close_walls)] == '0')
+		infos->pos_y += infos->plane_y * move_speed;
+	if (infos->map[(int)(infos->pos_x + infos->plane_x * move_speed)][(int) \
+		(infos->pos_y)] == '3' && infos->map[(int)(infos->pos_x + \
+		infos->plane_x * move_speed)][(int)(infos->pos_y)] == '3')
+		infos->pos_x += infos->plane_x * move_speed;
+	if (infos->map[(int)(infos->pos_x)][(int)(infos->pos_y + infos->plane_y \
+		* move_speed)] == '3' && infos->map[(int)(infos->pos_x)][(int) \
+		(infos->pos_y + infos->plane_y * move_speed)] == '3')
 		infos->pos_y += infos->plane_y * move_speed;
 }
 

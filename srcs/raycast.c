@@ -15,12 +15,11 @@
 // Perform digital differential analyzer (DDA) algorithm
 // Jump to next map square in x or y direction
 // then check if wall was hit
-void	dda_algo(t_info *infos)
+void	dda_algo(t_info *infos, t_rc *rc)
 {
-	t_rc	*rc;
-
 	rc = infos->rc;
 	rc->hit = 0;
+	rc->door = 0;
 	while (rc->hit == 0)
 	{
 		if (rc->side_dist_x < rc->side_dist_y)
@@ -35,7 +34,8 @@ void	dda_algo(t_info *infos)
 			rc->map_y += rc->step_y;
 			rc->side = 1;
 		}
-		if (infos->map[rc->map_x][rc->map_y] == '1')
+		if (infos->map[rc->map_x][rc->map_y] == '1'
+			|| infos->map[rc->map_x][rc->map_y] == '2')
 			rc->hit = 1;
 	}
 }
@@ -100,7 +100,7 @@ int	raycast(t_info *infos, t_rc *rc)
 		get_current_map_cell(infos);
 		get_delta_dist(infos);
 		get_side_dist(infos);
-		dda_algo(infos);
+		dda_algo(infos, NULL);
 		select_texture(infos);
 		get_perp_wall_dist(infos);
 		get_stripe_data(infos);

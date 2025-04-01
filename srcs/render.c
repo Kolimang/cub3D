@@ -20,11 +20,8 @@ static int	create_window(t_info *infos)
 	return (0);
 }
 
-static int	load_textures(t_info *infos)
+static int	load_textures(t_info *infos, int size)
 {
-	int	size;
-
-	size = TXSIZE;
 	infos->tx[0] = mlx_xpm_file_to_image(infos->mlx,
 			infos->no_tx_path, &size, &size);
 	infos->tx[1] = mlx_xpm_file_to_image(infos->mlx,
@@ -33,8 +30,18 @@ static int	load_textures(t_info *infos)
 			infos->we_tx_path, &size, &size);
 	infos->tx[3] = mlx_xpm_file_to_image(infos->mlx,
 			infos->ea_tx_path, &size, &size);
-	if (!infos->tx[0] || !infos->tx[1] || !infos->tx[2] || !infos->tx[3])
+	infos->tx[3] = mlx_xpm_file_to_image(infos->mlx,
+			infos->ea_tx_path, &size, &size);
+	infos->tx[4] = mlx_xpm_file_to_image(infos->mlx,
+			C_DOOR, &size, &size);
+	if (!infos->tx[0] || !infos->tx[1] || !infos->tx[2] || !infos->tx[3]
+		|| !infos->tx[4])
 		free_print_exit_error("Texture not found", infos);
+	infos->txtr[0].img = infos->tx[0];
+	infos->txtr[1].img = infos->tx[1];
+	infos->txtr[2].img = infos->tx[2];
+	infos->txtr[3].img = infos->tx[3];
+	infos->txtr[4].img = infos->tx[4];
 	set_textures(infos);
 	return (0);
 }
@@ -59,7 +66,7 @@ int	start_rendering(t_info *infos)
 	if (infos->mlx == NULL)
 		free_print_exit_error("mlx_init() failed.", infos);
 	create_window(infos);
-	load_textures(infos);
+	load_textures(infos, TXSIZE);
 	set_textures(infos);
 	set_mlx_screen_img(infos);
 	raycast(infos, NULL);
@@ -71,6 +78,5 @@ int	start_rendering(t_info *infos)
 	mlx_hook(infos->windw, ON_KEYPRESS, 1L << 0, &on_keypress, infos);
 	mlx_loop_hook(infos->mlx, &move_player, infos);
 	mlx_loop(infos->mlx);
-	write(1, "i\n", 2);
 	return (0);
 }

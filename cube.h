@@ -23,18 +23,21 @@
 
 //contexte d'affichage
 # define FOV 66
-# define TXNO 4
+# define TXNO 5
 # define TX_W 64
 # define TX_H 64
 # define TXSIZE 64
 # define WIN_W 1920
 # define WIN_H 1080
 # define NAME "cub3D"
+# define O_DOOR "img/door_open.xpm"
+# define C_DOOR "img/door_closed.xpm"
 
 //couleurs mini-map
 # define WALL_C 0x00FFB3B3
 # define FLOOR_C 0x00FFCCFF
 # define PLAYER_C 0x00FF6666
+# define DOOR_C 0x00A52A2A
 
 //key_hook
 enum
@@ -48,13 +51,14 @@ enum
 	Q_KEY = 113,
 	S_KEY = 115,
 	D_KEY = 100,
+	X_KEY = 120,
+	F_KEY = 102,
 	ESC_KEY = 65307,
 	L_ARROW = 65361,
 	R_ARROW = 65363,
 	U_ARROW = 65362,
 	D_ARROW = 65364,
-	MOUSE_MOVE = 6,
-	X_KEY = 120
+	MOUSE_MOVE = 6
 };
 
 typedef struct s_data
@@ -117,6 +121,9 @@ typedef struct s_rc
 	uint32_t		color;
 	int				px_index;
 	unsigned char	*px;
+	int				door;
+	int				door_x;
+	int				door_y;
 }	t_rc;
 
 typedef struct s_info
@@ -133,7 +140,7 @@ typedef struct s_info
 	void		*tx[TXNO];
 	t_rc		*rc;
 	t_data		img;
-	t_data		txtr[4];
+	t_data		txtr[5];
 	t_moves		moves;
 	char		*no_tx_path;
 	char		*so_tx_path;
@@ -149,10 +156,11 @@ typedef struct s_info
 	char		*c_color;
 	int			*c_color_clean;
 	int			*f_color_clean;
+	int			hitted_x;
+	int			hitted_y;
 	uint64_t	time;
 	uint64_t	old_time;
 	double		frame_time;
-
 }	t_info;
 
 //utils.c
@@ -175,7 +183,7 @@ int			put_img(t_info *infos, int id, int x, int y);
 int			on_destroy(t_info *infos);
 
 // raycast.c
-void		dda_algo(t_info *infos);
+void		dda_algo(t_info *infos, t_rc *rc);
 void		get_perp_wall_dist(t_info *infos);
 void		get_stripe_data(t_info *infos);
 int			raycast(t_info *infos, t_rc *rc);

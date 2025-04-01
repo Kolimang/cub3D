@@ -12,6 +12,28 @@
 
 #include "../cube.h"
 
+void	open_close_door(t_info *infos)
+{
+	int	x;
+	int	y;
+
+	x = (int)infos->pos_x - 1;
+	y = (int)infos->pos_y - 1;
+	while (x < (int)infos->pos_x + 2)
+	{
+		y = (int)infos->pos_y - 1;
+		while (y < (int)infos->pos_y + 2)
+		{
+			if (infos->map[x][y] == '2')
+				infos->map[x][y] = '3';
+			else if (infos->map[x][y] == '3')
+				infos->map[x][y] = '2';
+			++y;
+		}
+		++x;
+	}
+}
+
 int	on_keypress(int key, t_info *infos)
 {
 	if (key == U_ARROW || key == W_KEY || key == Z_KEY)
@@ -30,6 +52,8 @@ int	on_keypress(int key, t_info *infos)
 		on_destroy(infos);
 	if (key == X_KEY)
 		mouse_focus(infos);
+	if (key == F_KEY)
+		open_close_door(infos);
 	return (0);
 }
 

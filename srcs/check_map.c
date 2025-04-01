@@ -78,7 +78,7 @@ void	check_horizontal(t_info *infos, char **map, int i, int start_trigger)
 				|| map[i][j] == 'S' || map[i][j] == 'E')
 				update_start_pos(&start_trigger, infos, j, i);
 			else if (map[i][j] != '0' && map[i][j] != '1'
-					&& !ft_isspace(map[i][j]))
+					&& !ft_isspace(map[i][j]) && map[i][j] != '2')
 				free_print_exit_error("Invalid char in the map.", infos);
 			++j;
 		}

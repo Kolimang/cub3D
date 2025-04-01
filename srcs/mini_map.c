@@ -47,6 +47,9 @@ void	draw_minimap(t_info *infos)
 			if (infos->map[i][j] == '0')
 				draw_square(infos, WIN_W - ((infos->max_len - j + 2) * 10) \
 						, (2 + i) * 10, FLOOR_C);
+			if (infos->map[i][j] == '2' || infos->map[i][j] == '3')
+				draw_square(infos, WIN_W - ((infos->max_len - j + 2) * 10) \
+						, (2 + i) * 10, DOOR_C);
 		}
 		draw_square(infos, WIN_W - ((infos->max_len - round_y + 2) \
 				* 10), (2 + round_x) * 10, PLAYER_C);
