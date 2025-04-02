@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngharian <ngharian@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:52:33 by jrichir           #+#    #+#             */
-/*   Updated: 2025/03/26 14:06:30 by ngharian         ###   ########.fr       */
+/*   Updated: 2025/04/02 09:49:22 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,21 @@ void	select_texture(t_info *infos)
 		if (rc->map_x < (int)infos->pos_x)
 			rc->tx_id = 1;
 		else
-			rc->tx_id = 0;
+		{
+			if (infos->curr_tx_index > (TXNO - 4))
+				infos->curr_tx_index = 0;
+			if (infos->curr_tx_index == 0)
+				rc->tx_id = 0;
+			else if (infos->curr_tx_index == 1)
+				rc->tx_id = 4;
+			else if (infos->curr_tx_index == 2)
+				rc->tx_id = 5;
+			if (infos->frame % 500 == 0)
+				infos->curr_tx_index++;
+			infos->frame++;
+			if (infos->frame > 1000000)
+				infos->frame = 0;
+		}
 	}
 	else
 	{

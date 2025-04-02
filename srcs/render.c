@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:48:19 by jrichir           #+#    #+#             */
-/*   Updated: 2025/03/31 15:54:35 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/04/02 09:32:29 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,22 @@ static int	create_window(t_info *infos)
 	return (0);
 }
 
-static int	load_anim_textures(t_info *infos)
-{
-	int	i;
-	int	j;
+// static int	load_anim_textures(t_info *infos)
+// {
+// 	int	i;
+// 	int	j;
 
-	i = 0;
-	if (infos->no_tx_nb > 1)
-	{
-		while (i < no_tx_nb)
-		{
-			infos->tx[0][i] = mlx_xpm_file_to_image(infos->mlx,
-			infos->no_tx_path, &size, &size);
-			i++;
-		}
-	}
-}
+// 	i = 0;
+// 	if (infos->no_tx_nb > 1)
+// 	{
+// 		while (i < no_tx_nb)
+// 		{
+// 			infos->tx[0][i] = mlx_xpm_file_to_image(infos->mlx,
+// 			infos->no_tx_path, &size, &size);
+// 			i++;
+// 		}
+// 	}
+// }
 
 static int	load_textures(t_info *infos)
 {
@@ -50,6 +50,10 @@ static int	load_textures(t_info *infos)
 			infos->we_tx_path, &size, &size);
 	infos->tx[3] = mlx_xpm_file_to_image(infos->mlx,
 			infos->ea_tx_path, &size, &size);
+	infos->tx[4] = mlx_xpm_file_to_image(infos->mlx,
+			"img/1.xpm", &size, &size);
+	infos->tx[5] = mlx_xpm_file_to_image(infos->mlx,
+			"img/2.xpm", &size, &size);
 	if (!infos->tx[0] || !infos->tx[1] || !infos->tx[2] || !infos->tx[3])
 		free_print_exit_error("Texture not found", infos);
 	set_textures(infos);

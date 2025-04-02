@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngharian <ngharian@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 20:38:54 by ngharian          #+#    #+#             */
-/*   Updated: 2025/03/30 12:06:15 by ngharian         ###   ########.fr       */
+/*   Updated: 2025/04/02 09:42:48 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 //contexte d'affichage
 # define FOV 66
-# define TXNO 4
+# define TXNO 6
 # define TX_W 64
 # define TX_H 64
 # define TXSIZE 64
@@ -128,9 +128,10 @@ typedef struct s_info
 	void		*mlx;
 	void		*windw;
 	void		*tx[TXNO];
+	char		curr_tx_index;
 	t_rc		*rc;
 	t_data		img;
-	t_data		txtr[4];
+	t_data		txtr[TXNO];
 	t_moves		moves;
 	char		*no_tx_path;
 	char		*so_tx_path;
@@ -146,6 +147,7 @@ typedef struct s_info
 	char		*c_color;
 	int			*c_color_clean;
 	int			*f_color_clean;
+	int			frame;
 	uint64_t	time;
 	uint64_t	old_time;
 	double		frame_time;

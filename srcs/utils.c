@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngharian <ngharian@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 21:50:31 by ngharian          #+#    #+#             */
-/*   Updated: 2025/03/29 18:27:29 by ngharian         ###   ########.fr       */
+/*   Updated: 2025/04/02 09:43:14 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ void	init_infos(t_info *infos)
 	infos->y_start = -1;
 	infos->direction = 'a';
 	infos->max_len = 0;
+	infos->curr_tx_index = 0;
+	infos->frame = 0;
 	infos->rc = NULL;
 	infos->mlx = NULL;
 	infos->windw = NULL;
