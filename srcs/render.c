@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:48:19 by jrichir           #+#    #+#             */
-/*   Updated: 2025/04/02 14:44:18 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/04/02 15:07:03 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,8 @@ static int	create_window(t_info *infos)
 	return (0);
 }
 
-static int	load_textures(t_info *infos, int size)
+static int	load_animation_tx(t_info *infos, int size)
 {
-	infos->tx[0] = mlx_xpm_file_to_image(infos->mlx,
-			infos->no_tx_path, &size, &size);
-	infos->tx[1] = mlx_xpm_file_to_image(infos->mlx,
-			infos->so_tx_path, &size, &size);
-	infos->tx[2] = mlx_xpm_file_to_image(infos->mlx,
-			infos->we_tx_path, &size, &size);
-	infos->tx[3] = mlx_xpm_file_to_image(infos->mlx,
-			infos->ea_tx_path, &size, &size);
-	infos->tx[4] = mlx_xpm_file_to_image(infos->mlx,
-			C_DOOR, &size, &size);
 	infos->tx[5] = mlx_xpm_file_to_image(infos->mlx,
 			"img/torch01.xpm", &size, &size);
 	infos->tx[6] = mlx_xpm_file_to_image(infos->mlx,
@@ -52,23 +42,31 @@ static int	load_textures(t_info *infos, int size)
 			"img/torch09.xpm", &size, &size);
 	infos->tx[14] = mlx_xpm_file_to_image(infos->mlx,
 			"img/torch10.xpm", &size, &size);
-	if (!infos->tx[0] || !infos->tx[1] || !infos->tx[2] || !infos->tx[3]
-		|| !infos->tx[4])
-		free_print_exit_error("Texture not found", infos);
-	infos->txtr[0].img = infos->tx[0];
-	infos->txtr[1].img = infos->tx[1];
-	infos->txtr[2].img = infos->tx[2];
-	infos->txtr[3].img = infos->tx[3];
-	infos->txtr[4].img = infos->tx[4];
-	set_textures(infos);
 	return (0);
 }
 
-int	put_img(t_info *infos, int id, int x, int y)
+static int	load_textures(t_info *infos, int size)
 {
-	if (mlx_put_image_to_window(infos->mlx, infos->windw, infos->tx[id] \
-		, x, y) < 0)
-		free_print_exit_error("mlx_put_image_to_window() failed.", infos);
+	int	i;
+
+	infos->tx[0] = mlx_xpm_file_to_image(infos->mlx,
+			infos->no_tx_path, &size, &size);
+	infos->tx[1] = mlx_xpm_file_to_image(infos->mlx,
+			infos->so_tx_path, &size, &size);
+	infos->tx[2] = mlx_xpm_file_to_image(infos->mlx,
+			infos->we_tx_path, &size, &size);
+	infos->tx[3] = mlx_xpm_file_to_image(infos->mlx,
+			infos->ea_tx_path, &size, &size);
+	infos->tx[4] = mlx_xpm_file_to_image(infos->mlx,
+			C_DOOR, &size, &size);
+	load_animation_tx(infos, size);
+	i = -1;
+	while (++i < TXNO)
+	{
+		if (!infos->tx[i])
+			free_print_exit_error("Texture not found", infos);
+	}
+	set_textures(infos);
 	return (0);
 }
 

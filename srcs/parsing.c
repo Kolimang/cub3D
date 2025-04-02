@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:08:36 by ngharian          #+#    #+#             */
-/*   Updated: 2025/04/02 14:41:21 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/04/02 15:11:18 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,12 @@ static void	get_infos(t_info *infos, int fd)
 			free(line);
 			continue ;
 		}
-		if (infos->in_map == 1 && line[i] != '0' && line[i] != '1' && line[i] != 'T')
+		if (infos->in_map == 1 && line[i] != '0'
+			&& line[i] != '1' && line[i] != 'T')
 			free_print_exit_error(
 				"Map should be at the end of the file.", infos);
 		handle_line(line, infos, i);
 	}
-	close(fd);
 }
 
 void	uniform_map(t_info *infos)
@@ -125,6 +125,7 @@ void	parsing(t_info *infos, int fd)
 			"Min window resolution = 320*160, Max = 3840*2020.", infos);
 	init_infos(infos);
 	get_infos(infos, fd);
+	close(fd);
 	if (infos->c_color == NULL || infos->f_color == NULL
 		|| infos->map_len < 3 || infos->no_tx_path == NULL
 		|| infos->so_tx_path == NULL || infos->ea_tx_path == NULL

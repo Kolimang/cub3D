@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:52:33 by jrichir           #+#    #+#             */
-/*   Updated: 2025/04/02 14:41:11 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/04/02 15:09:25 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void	select_anim_texture(t_info *infos)
 	t_rc	*rc;
 
 	rc = infos->rc;
-	if (infos->curr_tx_index >= (TXNO - 4))
+	if (infos->curr_tx_index >= (TXNO - 5))
 		infos->curr_tx_index = 0;
 	if (infos->curr_tx_index <= 0)
-		rc->tx_id = 4;
+		rc->tx_id = 5;
 	else
-		rc->tx_id = 4 + infos->curr_tx_index;
-	if ((get_time_ms() - infos->start_time) % 30 == 0)//if ((get_time_ms() - infos->start_time) % (int)(1 / infos->frame_time) == 0)
+		rc->tx_id = 5 + infos->curr_tx_index;
+	if ((get_time_ms() - infos->start_time) % (int)(1 / infos->frame_time) == 0)
 		infos->curr_tx_index++;
 }
 
@@ -64,27 +64,6 @@ void	select_texture(t_info *infos)
 			rc->tx_id = 2;
 	}
 	get_door_texture(infos, rc);
-}
-
-// Calculate where exactly the wall was hit
-void	get_texture_coord(t_info *infos)
-{
-	t_rc	*rc;
-
-	rc = infos->rc;
-	if (rc->side == 0)
-		rc->wall_x = infos->pos_y + rc->perp_wall_dist * rc->ray_dir_y;
-	else
-		rc->wall_x = infos->pos_x + rc->perp_wall_dist * rc->ray_dir_x;
-	rc->wall_x -= floor(rc->wall_x);
-	rc->tx_x = (int)(rc->wall_x * (double)TX_W);
-	if (rc->side == 0 && rc->ray_dir_x > 0)
-		rc->tx_x = TX_W - rc->tx_x - 1;
-	if (rc->side == 1 && rc->ray_dir_y < 0)
-		rc->tx_x = TX_W - rc->tx_x - 1;
-	rc->tx_step = (double)TX_H / rc->line_height;
-	rc->tx_pos = (rc->draw_start - WIN_H / 2 + rc->line_height / 2)
-		* rc->tx_step;
 }
 
 void	fill_env_color(t_info *infos, int start, int end, int *col)

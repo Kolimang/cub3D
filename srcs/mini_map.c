@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngharian <ngharian@student.s19.be>         #+#  +:+       +#+        */
+/*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-03-31 10:46:01 by ngharian          #+#    #+#             */
-/*   Updated: 2025-03-31 10:46:01 by ngharian         ###   ########.fr       */
+/*   Created: 2025/03/31 10:46:01 by ngharian          #+#    #+#             */
+/*   Updated: 2025/04/02 14:53:46 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	draw_minimap(t_info *infos, int i)
 		j = -1;
 		while (infos->map[i][++j])
 		{
-			if (infos->map[i][j] == '1')
+			if (infos->map[i][j] == '1' || infos->map[i][j] == 'T')
 				draw_square(infos, WIN_W - ((infos->max_len - j + 2) \
 						* 10), (i + 2) * 10, WALL_C);
 			if (infos->map[i][j] == '0')

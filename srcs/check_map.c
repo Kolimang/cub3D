@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 12:45:25 by ngharian          #+#    #+#             */
-/*   Updated: 2025/04/02 14:40:53 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/04/02 15:05:57 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ void	check_horizontal(t_info *infos, char **map, int i, int start_trigger)
 			++j;
 		while (map[i][j])
 		{
-			if (map[i][j] != '1' && map[i][j] != 'T' && !ft_isspace(map[i][j]) && (j == 0
-					|| ft_isspace(map[i][j - 1])
+			if (map[i][j] != '1' && map[i][j] != 'T' && !ft_isspace(map[i][j])
+				&& (j == 0 || ft_isspace(map[i][j - 1])
 					|| ft_isspace(map[i][j + 1]) || map[i][j + 1] == '\0'))
 				free_print_exit_error("The map must be surrounded by walls." \
 									, infos);
@@ -103,9 +103,7 @@ int	get_map_height(char **map)
 
 void	check_vertical(char **map, int i, int j, t_info *infos)
 {
-	int	map_height;
-
-	map_height = get_map_height(map);
+	infos->map_len = get_map_height(map);
 	while (map[++i])
 	{
 		j = 0;
@@ -114,10 +112,11 @@ void	check_vertical(char **map, int i, int j, t_info *infos)
 		while (map[i][j])
 		{
 			if (map[i][j] != '1' && map[i][j] != 'T' && !ft_isspace(map[i][j]) \
-				&& (i == 0 || i == map_height - 1))
+				&& (i == 0 || i == infos->map_len - 1))
 				free_print_exit_error("The map must be surrounded by walls." \
 									, infos);
-			else if (map[i][j] != '1' && map[i][j] != 'T' && !ft_isspace(map[i][j]))
+			else if (map[i][j] != '1' && map[i][j] != 'T'
+				&& !ft_isspace(map[i][j]))
 			{
 				if ((int)ft_strlen(map[i - 1]) - 1 < j || \
 					(int)ft_strlen(map[i + 1]) - 1 < j || \

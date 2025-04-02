@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 20:38:54 by ngharian          #+#    #+#             */
-/*   Updated: 2025/04/02 14:38:45 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/04/02 15:10:07 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 //contexte d'affichage
 # define FOV 66
-# define TXNO 14
+# define TXNO 15
 # define TX_W 64
 # define TX_H 64
 # define TXSIZE 64
@@ -212,7 +212,6 @@ int			mouse_focus(t_info *infos);
 // draw.c
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void		select_texture(t_info *infos);
-void		get_texture_coord(t_info *infos);
 void		fill_env_color(t_info *infos, int start, int end, int *color);
 void		fill_img(t_info *infos);
 
@@ -221,6 +220,7 @@ void		set_textures(t_info *infos);
 void		set_mlx_screen_img(t_info *infos);
 uint64_t	get_time_ms(void);
 void		draw_minimap(t_info *infos, int i);
+void		get_texture_coord(t_info *infos);
 
 //doors.c
 void		check_door(t_info *infos);
