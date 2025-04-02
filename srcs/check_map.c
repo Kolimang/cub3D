@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 12:45:25 by ngharian          #+#    #+#             */
-/*   Updated: 2025/04/02 13:18:34 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/04/02 13:43:13 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void	check_vertical(char **map, int i, int j, t_info *infos)
 				&& (i == 0 || i == map_height - 1))
 				free_print_exit_error("The map must be surrounded by walls." \
 									, infos);
-			else if (map[i][j] != '1' && !ft_isspace(map[i][j]))
+			else if (map[i][j] != '1' && map[i][j] != 'T' && !ft_isspace(map[i][j]))
 			{
 				if ((int)ft_strlen(map[i - 1]) - 1 < j || \
 					(int)ft_strlen(map[i + 1]) - 1 < j || \

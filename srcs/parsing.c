@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngharian <ngharian@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:08:36 by ngharian          #+#    #+#             */
-/*   Updated: 2025/03/26 13:01:17 by ngharian         ###   ########.fr       */
+/*   Updated: 2025/04/02 13:44:49 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	ft_update_arr(t_info *infos, char *line, int i)
 		tmp = malloc(sizeof(char *) * (infos->map_len + 2));
 	if (tmp == NULL)
 		free_print_exit_error("Malloc failure.", infos);
-	if (line[ft_strlen(line)- 1] == '\n')
+	if (line[ft_strlen(line) - 1] == '\n')
 		line[ft_strlen(line) - 1] = '\0';
 	while (infos->map != NULL && infos->map[++i] != NULL)
 		tmp[i] = infos->map[i];
@@ -45,7 +45,7 @@ static void	handle_line(char *line, t_info *infos, int i)
 {
 	if (line[ft_strlen(line) - 1] == '\n')
 		line[ft_strlen(line) - 1] = '\0';
-	if (line[i] == '1' || line[i] == '0')
+	if (line[i] == '1' || line[i] == 'T' || line[i] == '0')
 		ft_update_arr(infos, line, -1);
 	else if (line[i] == 'C' && ft_isspace(line[i + 1]))
 		infos->c_color = line;
@@ -84,7 +84,7 @@ static void	get_infos(t_info *infos, int fd)
 			free(line);
 			continue ;
 		}
-		if (infos->in_map == 1 && line[i] != '0' && line[i] != '1')
+		if (infos->in_map == 1 && line[i] != '0' && line[i] != '1' && line[i] != 'T')
 			free_print_exit_error(
 				"Map should be at the end of the file.", infos);
 		handle_line(line, infos, i);
