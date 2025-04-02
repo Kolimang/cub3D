@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngharian <ngharian@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 12:45:25 by ngharian          #+#    #+#             */
-/*   Updated: 2025/03/26 12:56:47 by ngharian         ###   ########.fr       */
+/*   Updated: 2025/04/02 13:18:34 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	check_horizontal(t_info *infos, char **map, int i, int start_trigger)
 			++j;
 		while (map[i][j])
 		{
-			if (map[i][j] != '1' && !ft_isspace(map[i][j]) && (j == 0
+			if (map[i][j] != '1' && map[i][j] != 'T' && !ft_isspace(map[i][j]) && (j == 0
 					|| ft_isspace(map[i][j - 1])
 					|| ft_isspace(map[i][j + 1]) || map[i][j + 1] == '\0'))
 				free_print_exit_error("The map must be surrounded by walls." \
@@ -77,7 +77,7 @@ void	check_horizontal(t_info *infos, char **map, int i, int start_trigger)
 			if (map[i][j] == 'N' || map[i][j] == 'W'
 				|| map[i][j] == 'S' || map[i][j] == 'E')
 				update_start_pos(&start_trigger, infos, j, i);
-			else if (map[i][j] != '0' && map[i][j] != '1'
+			else if (map[i][j] != '0' && map[i][j] != '1' && map[i][j] != 'T'
 					&& !ft_isspace(map[i][j]))
 				free_print_exit_error("Invalid char in the map.", infos);
 			++j;
@@ -113,7 +113,7 @@ void	check_vertical(char **map, int i, int j, t_info *infos)
 			++j;
 		while (map[i][j])
 		{
-			if (map[i][j] != '1' && !ft_isspace(map[i][j]) \
+			if (map[i][j] != '1' && map[i][j] != 'T' && !ft_isspace(map[i][j]) \
 				&& (i == 0 || i == map_height - 1))
 				free_print_exit_error("The map must be surrounded by walls." \
 									, infos);

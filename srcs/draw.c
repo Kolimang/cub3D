@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:52:33 by jrichir           #+#    #+#             */
-/*   Updated: 2025/04/02 11:38:35 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/04/02 13:05:43 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,21 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+void	select_anim_texture(t_info *infos)
+{
+	t_rc	*rc;
+
+	rc = infos->rc;
+	if (infos->curr_tx_index >= (TXNO - 4))
+		infos->curr_tx_index = 0;
+	if (infos->curr_tx_index <= 0)
+		rc->tx_id = 4;
+	else
+		rc->tx_id = 4 + infos->curr_tx_index;
+	if ((get_time_ms() - infos->start_time) % 30 == 0)//if ((get_time_ms() - infos->start_time) % (int)(1 / infos->frame_time) == 0)
+		infos->curr_tx_index++;
+}
+
 // Define which texture must be rendered on current stripe
 // [0] = North texture
 // [1] = South texture
@@ -30,23 +45,14 @@ void	select_texture(t_info *infos)
 	t_rc	*rc;
 
 	rc = infos->rc;
-	if (rc->side == 0)
+	if (rc->torch_hit == 1)
+		select_anim_texture(infos);
+	else if (rc->side == 0)
 	{
 		if (rc->map_x < (int)infos->pos_x)
 			rc->tx_id = 1;
 		else
-		{
-			if (infos->curr_tx_index > (TXNO - 4))
-				infos->curr_tx_index = 0;
-			if (infos->curr_tx_index <= 0)
-				rc->tx_id = 0;
-			else
-				rc->tx_id = 3 + infos->curr_tx_index;
-			if ((get_time_ms() - infos->start_time) % (int)(1 / infos->frame_time) == 0)
-				infos->curr_tx_index++;
-			// if (infos->frame > 100000)
-			// 	infos->frame = 0;
-		}
+			rc->tx_id = 0;
 	}
 	else
 	{

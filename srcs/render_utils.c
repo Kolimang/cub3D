@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:52:33 by jrichir           #+#    #+#             */
-/*   Updated: 2025/04/02 10:37:50 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/04/02 12:31:52 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	set_textures(t_info *infos)
 	infos->txtr[10].img = infos->tx[10];
 	infos->txtr[11].img = infos->tx[11];
 	infos->txtr[12].img = infos->tx[12];
+	infos->txtr[13].img = infos->tx[13];
 	infos->txtr[0].addr = mlx_get_data_addr(infos->txtr[0].img,
 			&infos->txtr[0].bits_per_pixel, &infos->txtr[0].line_length,
 			&infos->txtr[0].endian);
@@ -66,6 +67,9 @@ void	set_textures(t_info *infos)
 	infos->txtr[12].addr = mlx_get_data_addr(infos->txtr[12].img,
 			&infos->txtr[12].bits_per_pixel, &infos->txtr[12].line_length,
 			&infos->txtr[12].endian);
+	infos->txtr[13].addr = mlx_get_data_addr(infos->txtr[13].img,
+			&infos->txtr[13].bits_per_pixel, &infos->txtr[13].line_length,
+			&infos->txtr[13].endian);
 	if (infos->txtr[0].addr == NULL || infos->txtr[1].addr == NULL
 		|| infos->txtr[2].addr == NULL || infos->txtr[3].addr == NULL)
 		free_print_exit_error("mlx_get_data_address() failed.", infos);

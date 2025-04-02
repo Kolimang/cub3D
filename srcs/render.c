@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:48:19 by jrichir           #+#    #+#             */
-/*   Updated: 2025/04/02 10:36:58 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/04/02 12:43:19 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ static int	load_textures(t_info *infos)
 			"img/torch09.xpm", &size, &size);
 	infos->tx[12] = mlx_xpm_file_to_image(infos->mlx,
 			"img/torch10.xpm", &size, &size);
+	infos->tx[13] = mlx_xpm_file_to_image(infos->mlx,
+			"img/torch01.xpm", &size, &size);
 	if (!infos->tx[0] || !infos->tx[1] || !infos->tx[2] || !infos->tx[3])
 		free_print_exit_error("Texture not found", infos);
 	set_textures(infos);

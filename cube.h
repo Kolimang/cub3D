@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 20:38:54 by ngharian          #+#    #+#             */
-/*   Updated: 2025/04/02 11:13:15 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/04/02 12:30:38 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 //contexte d'affichage
 # define FOV 66
-# define TXNO 13
+# define TXNO 14
 # define TX_W 64
 # define TX_H 64
 # define TXSIZE 64
@@ -99,6 +99,7 @@ typedef struct s_rc
 	int				step_y;
 	// wall hit
 	int				hit;
+	int				torch_hit;
 	int				side;
 	// texture calculations
 	double			wall_x;

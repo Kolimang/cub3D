@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:52:33 by jrichir           #+#    #+#             */
-/*   Updated: 2025/04/02 11:15:30 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/04/02 12:27:02 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	dda_algo(t_info *infos)
 
 	rc = infos->rc;
 	rc->hit = 0;
-	while (rc->hit == 0)
+	rc->torch_hit = 0;
+	while (rc->hit == 0 && rc->torch_hit == 0)
 	{
 		if (rc->side_dist_x < rc->side_dist_y)
 		{
@@ -37,6 +38,8 @@ void	dda_algo(t_info *infos)
 		}
 		if (infos->map[rc->map_x][rc->map_y] == '1')
 			rc->hit = 1;
+		else if (infos->map[rc->map_x][rc->map_y] == 'T')
+			rc->torch_hit = 1;
 	}
 }
 

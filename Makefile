@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ngharian <ngharian@student.s19.be>         +#+  +:+       +#+         #
+#    By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/19 11:55:49 by jrichir           #+#    #+#              #
-#    Updated: 2025/03/29 18:02:24 by ngharian         ###   ########.fr        #
+#    Updated: 2025/04/02 12:40:54 by jrichir          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ HEADER = cub3d.h
 
 OBJECTS = $(SRCS:%.c=%.o)
 
-CFLAGS = -g -Wall -Wextra -Werror
+CFLAGS = -g3 -Wall -Wextra -Werror
 
 CC = cc
 
