@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 12:45:25 by ngharian          #+#    #+#             */
-/*   Updated: 2025/04/02 13:43:13 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/04/02 14:40:53 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	check_horizontal(t_info *infos, char **map, int i, int start_trigger)
 				|| map[i][j] == 'S' || map[i][j] == 'E')
 				update_start_pos(&start_trigger, infos, j, i);
 			else if (map[i][j] != '0' && map[i][j] != '1' && map[i][j] != 'T'
-					&& !ft_isspace(map[i][j]))
+					&& !ft_isspace(map[i][j]) && map[i][j] != '2')
 				free_print_exit_error("Invalid char in the map.", infos);
 			++j;
 		}

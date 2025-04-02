@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:52:33 by jrichir           #+#    #+#             */
-/*   Updated: 2025/04/02 13:05:43 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/04/02 14:41:11 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	select_anim_texture(t_info *infos)
 // [1] = South texture
 // [2] = West texture
 // [3] = East texture
+// [4] = Open door texture
+// [5] = Close door texture
 void	select_texture(t_info *infos)
 {
 	t_rc	*rc;
@@ -61,6 +63,7 @@ void	select_texture(t_info *infos)
 		else
 			rc->tx_id = 2;
 	}
+	get_door_texture(infos, rc);
 }
 
 // Calculate where exactly the wall was hit

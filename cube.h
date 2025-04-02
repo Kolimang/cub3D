@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 20:38:54 by ngharian          #+#    #+#             */
-/*   Updated: 2025/04/02 12:30:38 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/04/02 14:38:45 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,14 @@
 # define WIN_W 1920
 # define WIN_H 1080
 # define NAME "cub3D"
+# define O_DOOR "img/door_open.xpm"
+# define C_DOOR "img/door_closed.xpm"
 
 //couleurs mini-map
 # define WALL_C 0x00FFB3B3
 # define FLOOR_C 0x00FFCCFF
 # define PLAYER_C 0x00FF6666
+# define DOOR_C 0x00A52A2A
 
 //key_hook
 enum
@@ -48,11 +51,14 @@ enum
 	Q_KEY = 113,
 	S_KEY = 115,
 	D_KEY = 100,
+	X_KEY = 120,
+	F_KEY = 102,
 	ESC_KEY = 65307,
 	L_ARROW = 65361,
 	R_ARROW = 65363,
 	U_ARROW = 65362,
-	D_ARROW = 65364
+	D_ARROW = 65364,
+	MOUSE_MOVE = 6
 };
 
 typedef struct s_data
@@ -76,6 +82,7 @@ typedef struct s_moves
 	int		mouse_move;
 	int		prev_mouse_x;
 	int		trigger;
+	int		win_focus;
 }	t_moves;
 
 typedef struct s_rc
@@ -115,6 +122,9 @@ typedef struct s_rc
 	uint32_t		color;
 	int				px_index;
 	unsigned char	*px;
+	// int				door;
+	// int				door_x;
+	// int				door_y;
 }	t_rc;
 
 typedef struct s_info
@@ -149,10 +159,11 @@ typedef struct s_info
 	int			*c_color_clean;
 	int			*f_color_clean;
 	uint64_t	start_time;
+	int			hitted_x;
+	int			hitted_y;
 	uint64_t	time;
 	uint64_t	old_time;
 	double		frame_time;
-
 }	t_info;
 
 //utils.c
@@ -175,7 +186,7 @@ int			put_img(t_info *infos, int id, int x, int y);
 int			on_destroy(t_info *infos);
 
 // raycast.c
-void		dda_algo(t_info *infos);
+void		dda_algo(t_info *infos, t_rc *rc);
 void		get_perp_wall_dist(t_info *infos);
 void		get_stripe_data(t_info *infos);
 int			raycast(t_info *infos, t_rc *rc);
@@ -196,6 +207,7 @@ void		rotate_l(t_info *infos);
 int			mouse_rotate(t_info *infos, int x);
 int			mouse_moved(int x, int y, t_info *infos);
 int			move_player(t_info *infos);
+int			mouse_focus(t_info *infos);
 
 // draw.c
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -208,6 +220,11 @@ void		fill_img(t_info *infos);
 void		set_textures(t_info *infos);
 void		set_mlx_screen_img(t_info *infos);
 uint64_t	get_time_ms(void);
-void		draw_minimap(t_info *infos);
+void		draw_minimap(t_info *infos, int i);
+
+//doors.c
+void		check_door(t_info *infos);
+void		open_close_door(t_info *infos);
+void		get_door_texture(t_info *infos, t_rc *rc);
 
 #endif

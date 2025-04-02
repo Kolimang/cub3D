@@ -6,7 +6,7 @@
 /*   By: ngharian <ngharian@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 14:14:07 by ngharian          #+#    #+#             */
-/*   Updated: 2025/03/28 14:15:28 by ngharian         ###   ########.fr       */
+/*   Updated: 2025/04/02 13:53:20 by ngharian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ int	on_keypress(int key, t_info *infos)
 		infos->moves.rot_l = 1;
 	if (key == ESC_KEY)
 		on_destroy(infos);
+	if (key == X_KEY)
+		mouse_focus(infos);
+	if (key == F_KEY)
+		open_close_door(infos);
 	return (0);
 }
 

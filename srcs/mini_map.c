@@ -26,14 +26,12 @@ static void	draw_square(t_info *infos, int x, int y, int color)
 	}
 }
 
-void	draw_minimap(t_info *infos)
+void	draw_minimap(t_info *infos, int i)
 {
-	int	i;
 	int	j;
 	int	round_x;
 	int	round_y;
 
-	i = -1;
 	round_x = round(infos->pos_x - 0.5);
 	round_y = round(infos->pos_y - 0.5);
 	while (infos->map[++i])
@@ -47,6 +45,9 @@ void	draw_minimap(t_info *infos)
 			if (infos->map[i][j] == '0')
 				draw_square(infos, WIN_W - ((infos->max_len - j + 2) * 10) \
 						, (2 + i) * 10, FLOOR_C);
+			if (infos->map[i][j] == '2' || infos->map[i][j] == '3')
+				draw_square(infos, WIN_W - ((infos->max_len - j + 2) * 10) \
+						, (2 + i) * 10, DOOR_C);
 		}
 		draw_square(infos, WIN_W - ((infos->max_len - round_y + 2) \
 				* 10), (2 + round_x) * 10, PLAYER_C);

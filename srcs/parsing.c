@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:08:36 by ngharian          #+#    #+#             */
-/*   Updated: 2025/04/02 13:44:49 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/04/02 14:41:21 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,5 +131,6 @@ void	parsing(t_info *infos, int fd)
 		|| infos->we_tx_path == NULL)
 		free_print_exit_error("The file lacks information.", infos);
 	check_infos(infos);
+	check_door(infos);
 	uniform_map(infos);
 }

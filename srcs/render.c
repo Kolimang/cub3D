@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:48:19 by jrichir           #+#    #+#             */
-/*   Updated: 2025/04/02 12:43:19 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/04/02 14:44:18 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,8 @@ static int	create_window(t_info *infos)
 	return (0);
 }
 
-// static int	load_anim_textures(t_info *infos)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = 0;
-// 	if (infos->no_tx_nb > 1)
-// 	{
-// 		while (i < no_tx_nb)
-// 		{
-// 			infos->tx[0][i] = mlx_xpm_file_to_image(infos->mlx,
-// 			infos->no_tx_path, &size, &size);
-// 			i++;
-// 		}
-// 	}
-// }
-
-static int	load_textures(t_info *infos)
+static int	load_textures(t_info *infos, int size)
 {
-	int	size;
-
-	size = TXSIZE;
 	infos->tx[0] = mlx_xpm_file_to_image(infos->mlx,
 			infos->no_tx_path, &size, &size);
 	infos->tx[1] = mlx_xpm_file_to_image(infos->mlx,
@@ -51,27 +31,35 @@ static int	load_textures(t_info *infos)
 	infos->tx[3] = mlx_xpm_file_to_image(infos->mlx,
 			infos->ea_tx_path, &size, &size);
 	infos->tx[4] = mlx_xpm_file_to_image(infos->mlx,
-			"img/torch02.xpm", &size, &size);
+			C_DOOR, &size, &size);
 	infos->tx[5] = mlx_xpm_file_to_image(infos->mlx,
-			"img/torch03.xpm", &size, &size);
-	infos->tx[6] = mlx_xpm_file_to_image(infos->mlx,
-			"img/torch04.xpm", &size, &size);
-	infos->tx[7] = mlx_xpm_file_to_image(infos->mlx,
-			"img/torch05.xpm", &size, &size);
-	infos->tx[8] = mlx_xpm_file_to_image(infos->mlx,
-			"img/torch06.xpm", &size, &size);
-	infos->tx[9] = mlx_xpm_file_to_image(infos->mlx,
-			"img/torch07.xpm", &size, &size);
-	infos->tx[10] = mlx_xpm_file_to_image(infos->mlx,
-			"img/torch08.xpm", &size, &size);
-	infos->tx[11] = mlx_xpm_file_to_image(infos->mlx,
-			"img/torch09.xpm", &size, &size);
-	infos->tx[12] = mlx_xpm_file_to_image(infos->mlx,
-			"img/torch10.xpm", &size, &size);
-	infos->tx[13] = mlx_xpm_file_to_image(infos->mlx,
 			"img/torch01.xpm", &size, &size);
-	if (!infos->tx[0] || !infos->tx[1] || !infos->tx[2] || !infos->tx[3])
+	infos->tx[6] = mlx_xpm_file_to_image(infos->mlx,
+			"img/torch02.xpm", &size, &size);
+	infos->tx[7] = mlx_xpm_file_to_image(infos->mlx,
+			"img/torch03.xpm", &size, &size);
+	infos->tx[8] = mlx_xpm_file_to_image(infos->mlx,
+			"img/torch04.xpm", &size, &size);
+	infos->tx[9] = mlx_xpm_file_to_image(infos->mlx,
+			"img/torch05.xpm", &size, &size);
+	infos->tx[10] = mlx_xpm_file_to_image(infos->mlx,
+			"img/torch06.xpm", &size, &size);
+	infos->tx[11] = mlx_xpm_file_to_image(infos->mlx,
+			"img/torch07.xpm", &size, &size);
+	infos->tx[12] = mlx_xpm_file_to_image(infos->mlx,
+			"img/torch08.xpm", &size, &size);
+	infos->tx[13] = mlx_xpm_file_to_image(infos->mlx,
+			"img/torch09.xpm", &size, &size);
+	infos->tx[14] = mlx_xpm_file_to_image(infos->mlx,
+			"img/torch10.xpm", &size, &size);
+	if (!infos->tx[0] || !infos->tx[1] || !infos->tx[2] || !infos->tx[3]
+		|| !infos->tx[4])
 		free_print_exit_error("Texture not found", infos);
+	infos->txtr[0].img = infos->tx[0];
+	infos->txtr[1].img = infos->tx[1];
+	infos->txtr[2].img = infos->tx[2];
+	infos->txtr[3].img = infos->tx[3];
+	infos->txtr[4].img = infos->tx[4];
 	set_textures(infos);
 	return (0);
 }
@@ -96,14 +84,14 @@ int	start_rendering(t_info *infos)
 	if (infos->mlx == NULL)
 		free_print_exit_error("mlx_init() failed.", infos);
 	create_window(infos);
-	load_textures(infos);
+	load_textures(infos, TXSIZE);
 	set_textures(infos);
 	set_mlx_screen_img(infos);
 	raycast(infos, NULL);
 	mlx_mouse_move(infos->mlx, infos->windw, WIN_W / 2, WIN_H / 2);
 	mlx_mouse_hide(infos->mlx, infos->windw);
 	mlx_hook(infos->windw, ON_DESTROY, 0, &on_destroy, infos);
-	mlx_hook(infos->windw, 6, (1L << 6), &mouse_moved, infos);
+	mlx_hook(infos->windw, MOUSE_MOVE, (1L << 6), &mouse_moved, infos);
 	mlx_hook(infos->windw, ON_KEYRELEASE, 1L << 1, &on_keyrelease, infos);
 	mlx_hook(infos->windw, ON_KEYPRESS, 1L << 0, &on_keypress, infos);
 	mlx_loop_hook(infos->mlx, &move_player, infos);

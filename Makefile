@@ -6,13 +6,12 @@
 #    By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/19 11:55:49 by jrichir           #+#    #+#              #
-#    Updated: 2025/04/02 12:40:54 by jrichir          ###   ########.fr        #
+#    Updated: 2025/04/02 14:39:51 by jrichir          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
-
-SRCS =  ./srcs/main.c \
+SRCS =	./srcs/main.c \
 		./srcs/utils.c \
 		./srcs/parsing.c \
 		./srcs/checking.c \
@@ -25,13 +24,14 @@ SRCS =  ./srcs/main.c \
 		./srcs/mini_map.c \
 		./srcs/key_press_release.c \
 		./srcs/move.c \
-		./srcs/rotate.c
+		./srcs/rotate.c \
+		./srcs/doors.c
 
 HEADER = cub3d.h
 
 OBJECTS = $(SRCS:%.c=%.o)
 
-CFLAGS = -g3 -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 
 CC = cc
 
