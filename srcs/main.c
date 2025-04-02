@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 20:39:26 by ngharian          #+#    #+#             */
-/*   Updated: 2025/03/27 13:19:58 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/04/02 11:13:49 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	main(int argc, char *argv[])
 	infos->rc = malloc(sizeof(t_rc));
 	if (infos->rc == NULL)
 		free_print_exit_error("Malloc failure", infos);
+	infos->start_time = get_time_ms();
 	start_rendering(infos);
 	ft_free(infos);
 	return (0);

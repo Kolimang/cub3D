@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngharian <ngharian@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:52:33 by jrichir           #+#    #+#             */
-/*   Updated: 2025/03/28 14:49:29 by ngharian         ###   ########.fr       */
+/*   Updated: 2025/04/02 11:15:30 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ int	raycast(t_info *infos, t_rc *rc)
 	infos->old_time = infos->time;
 	infos->time = get_time_ms();
 	infos->frame_time = (infos->time - infos->old_time) / 1000.0;
+	// infos->frame++;
 	draw_minimap(infos);
 	put_fps_win(infos);
 	return (0);

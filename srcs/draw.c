@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:52:33 by jrichir           #+#    #+#             */
-/*   Updated: 2025/04/02 09:49:22 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/04/02 11:38:35 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,14 @@ void	select_texture(t_info *infos)
 		{
 			if (infos->curr_tx_index > (TXNO - 4))
 				infos->curr_tx_index = 0;
-			if (infos->curr_tx_index == 0)
+			if (infos->curr_tx_index <= 0)
 				rc->tx_id = 0;
-			else if (infos->curr_tx_index == 1)
-				rc->tx_id = 4;
-			else if (infos->curr_tx_index == 2)
-				rc->tx_id = 5;
-			if (infos->frame % 500 == 0)
+			else
+				rc->tx_id = 3 + infos->curr_tx_index;
+			if ((get_time_ms() - infos->start_time) % (int)(1 / infos->frame_time) == 0)
 				infos->curr_tx_index++;
-			infos->frame++;
-			if (infos->frame > 1000000)
-				infos->frame = 0;
+			// if (infos->frame > 100000)
+			// 	infos->frame = 0;
 		}
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 21:50:31 by ngharian          #+#    #+#             */
-/*   Updated: 2025/04/02 09:43:14 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/04/02 12:02:38 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ void	init_infos(t_info *infos)
 	infos->direction = 'a';
 	infos->max_len = 0;
 	infos->curr_tx_index = 0;
-	infos->frame = 0;
 	infos->rc = NULL;
 	infos->mlx = NULL;
 	infos->windw = NULL;

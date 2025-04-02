@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 20:38:54 by ngharian          #+#    #+#             */
-/*   Updated: 2025/04/02 09:42:48 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/04/02 11:13:15 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 //contexte d'affichage
 # define FOV 66
-# define TXNO 6
+# define TXNO 13
 # define TX_W 64
 # define TX_H 64
 # define TXSIZE 64
@@ -147,7 +147,7 @@ typedef struct s_info
 	char		*c_color;
 	int			*c_color_clean;
 	int			*f_color_clean;
-	int			frame;
+	uint64_t	start_time;
 	uint64_t	time;
 	uint64_t	old_time;
 	double		frame_time;
