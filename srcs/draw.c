@@ -6,7 +6,7 @@
 /*   By: ngharian <ngharian@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:52:33 by jrichir           #+#    #+#             */
-/*   Updated: 2025/03/26 14:06:30 by ngharian         ###   ########.fr       */
+/*   Updated: 2025/04/02 14:18:10 by ngharian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ void	select_texture(t_info *infos)
 		else
 			rc->tx_id = 2;
 	}
-	if (infos->map[rc->map_x][rc->map_y] == '2')
-		rc->tx_id = 4;
+	get_door_texture(infos, rc);
 }
 
 // Calculate where exactly the wall was hit

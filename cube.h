@@ -6,7 +6,7 @@
 /*   By: ngharian <ngharian@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 20:38:54 by ngharian          #+#    #+#             */
-/*   Updated: 2025/03/30 12:06:15 by ngharian         ###   ########.fr       */
+/*   Updated: 2025/04/02 14:19:15 by ngharian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 //contexte d'affichage
 # define FOV 66
-# define TXNO 5
+# define TXNO 6
 # define TX_W 64
 # define TX_H 64
 # define TXSIZE 64
@@ -218,5 +218,10 @@ void		set_textures(t_info *infos);
 void		set_mlx_screen_img(t_info *infos);
 uint64_t	get_time_ms(void);
 void		draw_minimap(t_info *infos, int i);
+
+//doors.c
+void		check_door(t_info *infos);
+void		open_close_door(t_info *infos);
+void		get_door_texture(t_info *infos, t_rc *rc);
 
 #endif

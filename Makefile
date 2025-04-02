@@ -6,7 +6,7 @@
 #    By: ngharian <ngharian@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/19 11:55:49 by jrichir           #+#    #+#              #
-#    Updated: 2025/03/29 18:02:24 by ngharian         ###   ########.fr        #
+#    Updated: 2025/04/02 13:55:42 by ngharian         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ SRCS =	./srcs/main.c \
 		./srcs/mini_map.c \
 		./srcs/key_press_release.c \
 		./srcs/move.c \
-		./srcs/rotate.c
+		./srcs/rotate.c \
+		./srcs/doors.c
 
 HEADER = cub3d.h
 

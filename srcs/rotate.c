@@ -6,7 +6,7 @@
 /*   By: ngharian <ngharian@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 18:05:13 by ngharian          #+#    #+#             */
-/*   Updated: 2025/03/30 12:10:44 by ngharian         ###   ########.fr       */
+/*   Updated: 2025/04/02 14:20:59 by ngharian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	mouse_rotate(t_info *infos, int x)
 
 	old_dir_x = infos->dir_x;
 	old_plane_x = infos->plane_x;
-	angle = (x / infos->frame_time) * 0.00055;
+	angle = (x / infos->frame_time) * 0.0002;
 	infos->dir_x = infos->dir_x * cos(angle) - infos->dir_y * sin(angle);
 	infos->dir_y = old_dir_x * sin(angle) + infos->dir_y * cos(angle);
 	infos->plane_x = infos->plane_x * cos(angle) - infos->plane_y * sin(angle);

@@ -6,34 +6,11 @@
 /*   By: ngharian <ngharian@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 14:14:07 by ngharian          #+#    #+#             */
-/*   Updated: 2025/03/28 14:15:28 by ngharian         ###   ########.fr       */
+/*   Updated: 2025/04/02 13:53:20 by ngharian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
-
-void	open_close_door(t_info *infos)
-{
-	int	x;
-	int	y;
-
-	x = (int)infos->pos_x - 1;
-	y = (int)infos->pos_y - 1;
-	while (x < (int)infos->pos_x + 2)
-	{
-		y = (int)infos->pos_y - 1;
-		while (y < (int)infos->pos_y + 2)
-		{
-			if (infos->map[x][y] == '2')
-				infos->map[x][y] = '3';
-			else if (infos->map[x][y] == '3' && infos->pos_x != (double)x
-					&& (int)infos->pos_y != (double)y)
-				infos->map[x][y] = '2';
-			++y;
-		}
-		++x;
-	}
-}
 
 int	on_keypress(int key, t_info *infos)
 {

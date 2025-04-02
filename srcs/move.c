@@ -6,7 +6,7 @@
 /*   By: ngharian <ngharian@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:52:33 by jrichir           #+#    #+#             */
-/*   Updated: 2025/03/30 12:06:41 by ngharian         ###   ########.fr       */
+/*   Updated: 2025/04/02 12:58:19 by ngharian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ int	move_player(t_info *infos)
 {
 	double	close_walls;
 
-	close_walls = 1.25;
+	close_walls = 1.15;
 	if (infos->moves.go_fwd == 1)
 		displace_u(infos, close_walls);
 	else if (infos->moves.go_bckwd == 1)
