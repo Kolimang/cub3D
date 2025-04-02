@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:08:36 by ngharian          #+#    #+#             */
-/*   Updated: 2025/04/02 15:11:18 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/04/02 15:14:33 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ void	parsing(t_info *infos, int fd)
 	if (WIN_W < 320 || WIN_H < 160 || WIN_W > 3840 || WIN_H > 2020)
 		free_print_exit_error(
 			"Min window resolution = 320*160, Max = 3840*2020.", infos);
-	init_infos(infos);
+	init_infos(infos, -1);
 	get_infos(infos, fd);
 	close(fd);
 	if (infos->c_color == NULL || infos->f_color == NULL

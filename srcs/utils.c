@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 21:50:31 by ngharian          #+#    #+#             */
-/*   Updated: 2025/04/02 12:02:38 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/04/02 15:19:40 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,20 @@ void	free_print_exit_error(char *message, t_info *infos)
 
 static void	ft_free_mlx(t_info *infos)
 {
+	int	i;
+
 	if (infos->img.img != NULL)
 		mlx_destroy_image(infos->mlx, infos->img.img);
-	if (infos->tx[0] != NULL)
-		mlx_destroy_image(infos->mlx, infos->tx[0]);
-	if (infos->tx[1] != NULL)
-		mlx_destroy_image(infos->mlx, infos->tx[1]);
-	if (infos->tx[2] != NULL)
-		mlx_destroy_image(infos->mlx, infos->tx[2]);
-	if (infos->tx[3] != NULL)
-		mlx_destroy_image(infos->mlx, infos->tx[3]);
+	i = -1;
+	while (++i < TXNO)
+	{
+		if (infos->tx[i] != NULL)
+			mlx_destroy_image(infos->mlx, infos->tx[i]);
+	}
 	if (infos->windw != NULL)
 		mlx_destroy_window(infos->mlx, infos->windw);
-	if (infos->tx[4] != NULL)
-		mlx_destroy_image(infos->mlx, infos->tx[4]);
-	mlx_destroy_display(infos->mlx);
+	if (infos->mlx != NULL)
+		mlx_destroy_display(infos->mlx);
 	free(infos->mlx);
 }
 
@@ -89,7 +88,7 @@ void	init_movements(t_info *infos)
 	infos->tx[5] = NULL;
 }
 
-void	init_infos(t_info *infos)
+void	init_infos(t_info *infos, int i)
 {
 	infos->map = NULL;
 	infos->no_tx_path = NULL;
@@ -111,9 +110,9 @@ void	init_infos(t_info *infos)
 	infos->mlx = NULL;
 	infos->windw = NULL;
 	infos->img.img = NULL;
-	infos->tx[0] = NULL;
-	infos->tx[1] = NULL;
-	infos->tx[2] = NULL;
-	infos->tx[3] = NULL;
+	while (++i < TXNO)
+		infos->tx[i] = NULL;
+	infos->mlx = NULL;
+	infos->windw = NULL;
 	init_movements(infos);
 }

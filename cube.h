@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 20:38:54 by ngharian          #+#    #+#             */
-/*   Updated: 2025/04/02 15:10:07 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/04/02 15:14:19 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ typedef struct s_info
 
 //utils.c
 void		free_print_exit_error(char *message, t_info *infos);
-void		init_infos(t_info *infos);
+void		init_infos(t_info *infos, int i);
 void		ft_free(t_info *infos);
 
 //checking.c
