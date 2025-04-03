@@ -6,26 +6,27 @@
 #    By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/19 11:55:49 by jrichir           #+#    #+#              #
-#    Updated: 2025/04/02 14:39:51 by jrichir          ###   ########.fr        #
+#    Updated: 2025/04/03 12:41:45 by jrichir          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
-SRCS =	./srcs/main.c \
-		./srcs/utils.c \
-		./srcs/parsing.c \
-		./srcs/checking.c \
-		./srcs/check_map.c \
-		./srcs/render.c \
-		./srcs/raycast.c \
-		./srcs/raycast_utils.c \
-		./srcs/draw.c \
-		./srcs/render_utils.c \
-		./srcs/mini_map.c \
-		./srcs/key_press_release.c \
-		./srcs/move.c \
-		./srcs/rotate.c \
-		./srcs/doors.c
+SRCS =	./srcs/main_bonus.c \
+		./srcs/utils_bonus.c \
+		./srcs/parsing_bonus.c \
+		./srcs/checking_bonus.c \
+		./srcs/check_map_bonus.c \
+		./srcs/load_tx_bonus.c \
+		./srcs/render_bonus.c \
+		./srcs/raycast_bonus.c \
+		./srcs/raycast_utils_bonus.c \
+		./srcs/draw_bonus.c \
+		./srcs/render_utils_bonus.c \
+		./srcs/mini_map_bonus.c \
+		./srcs/key_press_release_bonus.c \
+		./srcs/move_bonus.c \
+		./srcs/rotate_bonus.c \
+		./srcs/doors_bonus.c
 
 HEADER = cub3d.h
 
