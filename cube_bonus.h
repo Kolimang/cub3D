@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 20:38:54 by ngharian          #+#    #+#             */
-/*   Updated: 2025/04/03 12:41:13 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/04/03 13:02:11 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,6 @@ void		parsing(t_info *infos, int fd);
 
 // render.c
 int			start_rendering(t_info *infos);
-int			put_img(t_info *infos, int id, int x, int y);
 int			on_destroy(t_info *infos);
 
 // raycast.c

@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:52:33 by jrichir           #+#    #+#             */
-/*   Updated: 2025/04/03 12:40:50 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/04/03 13:02:19 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,6 @@ void	set_mlx_screen_img(t_info *infos)
 			&infos->img.endian);
 	if (infos->img.img == NULL)
 		free_print_exit_error("mlx_get_data_address() failed.", infos);
-}
-
-int	put_img(t_info *infos, int id, int x, int y)
-{
-	if (mlx_put_image_to_window(infos->mlx, infos->windw, infos->tx[id] \
-		, x, y) < 0)
-		free_print_exit_error("mlx_put_image_to_window() failed.", infos);
-	return (0);
 }
 
 void	get_texture_coord(t_info *infos)
