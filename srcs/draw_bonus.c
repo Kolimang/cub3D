@@ -6,7 +6,7 @@
 /*   By: jrichir <jrichir@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:52:33 by jrichir           #+#    #+#             */
-/*   Updated: 2025/04/03 12:40:50 by jrichir          ###   ########.fr       */
+/*   Updated: 2025/04/03 12:55:12 by jrichir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	select_anim_texture(t_info *infos)
 		rc->tx_id = 5 + (10 * rc->wall_ori);
 	else
 		rc->tx_id = 5 + (10 * rc->wall_ori) + infos->curr_tx_index;
-	if (infos->frame > 6)
+	if (infos->frame > 3)
 	{
 		infos->frame = 0;
 		infos->curr_tx_index++;
