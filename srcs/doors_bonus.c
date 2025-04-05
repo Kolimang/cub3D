@@ -29,7 +29,7 @@ void	check_door(t_info *infos)
 					|| infos->map[i - 1][j] != '1')))
 				free_print_exit_error(
 					"Door should be surrounded by at least 2 walls." \
-					, infos);
+					, infos, NULL);
 		}
 	}
 }

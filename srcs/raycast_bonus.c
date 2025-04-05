@@ -111,7 +111,7 @@ int	raycast(t_info *infos, t_rc *rc)
 	}
 	if (mlx_put_image_to_window(infos->mlx, infos->windw, infos->img.img \
 		, 0, 0) < 0)
-		free_print_exit_error("mlx_put_image_to_window() failed.", infos);
+		free_print_exit_error("mlx_put_image_to_window() failed.", infos, NULL);
 	infos->old_time = infos->time;
 	infos->time = get_time_ms();
 	infos->frame_time = (infos->time - infos->old_time) / 1000.0;

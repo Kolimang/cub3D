@@ -24,7 +24,8 @@ void	set_textures(t_info *infos)
 				&infos->txtr[i].bits_per_pixel, &infos->txtr[i].line_length,
 				&infos->txtr[i].endian);
 		if (infos->txtr[i].addr == NULL)
-			free_print_exit_error("mlx_get_data_address() failed.", infos);
+			free_print_exit_error("mlx_get_data_address() failed.", infos,
+				NULL);
 	}
 }
 
@@ -40,12 +41,12 @@ void	set_mlx_screen_img(t_info *infos)
 {
 	infos->img.img = mlx_new_image(infos->mlx, WIN_W, WIN_H);
 	if (infos->img.img == NULL)
-		free_print_exit_error("mlx_new_image() failed.", infos);
+		free_print_exit_error("mlx_new_image() failed.", infos, NULL);
 	infos->img.addr = mlx_get_data_addr(infos->img.img,
 			&infos->img.bits_per_pixel, &infos->img.line_length,
 			&infos->img.endian);
 	if (infos->img.img == NULL)
-		free_print_exit_error("mlx_get_data_address() failed.", infos);
+		free_print_exit_error("mlx_get_data_address() failed.", infos, NULL);
 }
 
 void	get_texture_coord(t_info *infos)

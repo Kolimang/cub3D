@@ -33,7 +33,8 @@ void	other_pos(t_info *infos, int y, int x)
 void	update_start_pos(int *trigger, t_info *infos, int y, int x)
 {
 	if (*trigger == 1)
-		free_print_exit_error("There should be only one start position", infos);
+		free_print_exit_error("There should be only one start position",
+			infos, NULL);
 	*trigger = 1;
 	infos->direction = infos->map[x][y];
 	infos->x_start = x;
@@ -73,18 +74,18 @@ void	check_horizontal(t_info *infos, char **map, int i, int start_trigger)
 				&& (j == 0 || ft_isspace(map[i][j - 1])
 					|| ft_isspace(map[i][j + 1]) || map[i][j + 1] == '\0'))
 				free_print_exit_error("The map must be surrounded by walls." \
-									, infos);
+									, infos, NULL);
 			if (map[i][j] == 'N' || map[i][j] == 'W'
 				|| map[i][j] == 'S' || map[i][j] == 'E')
 				update_start_pos(&start_trigger, infos, j, i);
 			else if (map[i][j] != '0' && map[i][j] != '1' && map[i][j] != 'T'
 					&& !ft_isspace(map[i][j]) && map[i][j] != '2')
-				free_print_exit_error("Invalid char in the map.", infos);
+				free_print_exit_error("Invalid char in the map.", infos, NULL);
 			++j;
 		}
 	}
 	if (start_trigger == 0)
-		free_print_exit_error("No start position found in map.", infos);
+		free_print_exit_error("No start position found in map.", infos, NULL);
 }
 
 int	get_map_height(char **map)
@@ -114,7 +115,7 @@ void	check_vertical(char **map, int i, int j, t_info *infos)
 			if (map[i][j] != '1' && map[i][j] != 'T' && !ft_isspace(map[i][j]) \
 				&& (i == 0 || i == infos->map_len - 1))
 				free_print_exit_error("The map must be surrounded by walls." \
-									, infos);
+									, infos, NULL);
 			else if (map[i][j] != '1' && map[i][j] != 'T'
 				&& !ft_isspace(map[i][j]))
 			{
@@ -122,7 +123,7 @@ void	check_vertical(char **map, int i, int j, t_info *infos)
 					(int)ft_strlen(map[i + 1]) - 1 < j || \
 					ft_isspace(map[i - 1][j]) || ft_isspace(map[i + 1][j]))
 					free_print_exit_error(
-						"The map must be surrounded by walls.", infos);
+						"The map must be surrounded by walls.", infos, NULL);
 			}
 			++j;
 		}

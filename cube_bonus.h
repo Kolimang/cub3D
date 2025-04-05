@@ -168,10 +168,16 @@ typedef struct s_info
 	double		frame_time;
 }	t_info;
 
+typedef struct s_line
+{
+	char			*s;
+	struct s_line	*next;
+}	t_line;
+
 //utils.c
-void		free_print_exit_error(char *message, t_info *infos);
+void		free_print_exit_error(char *message, t_info *infos, t_line *line);
 void		init_infos(t_info *infos, int i);
-void		ft_free(t_info *infos);
+void		ft_free(t_info *infos, int i);
 
 //checking.c
 void		check_infos(t_info *info);
@@ -181,6 +187,10 @@ void		check_vertical(char **map, int i, int j, t_info *infos);
 
 // parsing.c
 void		parsing(t_info *infos, int fd);
+t_line		*get_lines(t_line *lines, t_info *infos, int fd, t_line *head);
+t_line		*handle_and_next(t_line *line, t_line *tmp, t_info *infos,
+				int i);
+void		ft_free_lines(t_line *line);
 
 // render.c
 int			start_rendering(t_info *infos);

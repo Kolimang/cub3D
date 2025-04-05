@@ -16,13 +16,13 @@ static int	create_window(t_info *infos)
 {
 	infos->windw = mlx_new_window(infos->mlx, WIN_W, WIN_H, NAME);
 	if (!(infos->windw))
-		free_print_exit_error("mlx_new_window() failed", infos);
+		free_print_exit_error("mlx_new_window() failed", infos, NULL);
 	return (0);
 }
 
 int	on_destroy(t_info *infos)
 {
-	ft_free(infos);
+	ft_free(infos, -1);
 	exit(0);
 }
 
@@ -31,7 +31,7 @@ int	start_rendering(t_info *infos)
 	infos->mlx = mlx_init();
 	infos->frame = 0;
 	if (infos->mlx == NULL)
-		free_print_exit_error("mlx_init() failed.", infos);
+		free_print_exit_error("mlx_init() failed.", infos, NULL);
 	create_window(infos);
 	load_textures(infos, TXSIZE);
 	set_textures(infos);

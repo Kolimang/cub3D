@@ -13,6 +13,7 @@
 NAME = cub3D
 SRCS =	./srcs/main_bonus.c \
 		./srcs/utils_bonus.c \
+		./srcs/get_lines.c \
 		./srcs/parsing_bonus.c \
 		./srcs/checking_bonus.c \
 		./srcs/check_map_bonus.c \

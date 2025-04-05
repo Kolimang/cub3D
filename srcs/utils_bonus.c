@@ -12,14 +12,16 @@
 
 #include "../cube_bonus.h"
 
-void	free_print_exit_error(char *message, t_info *infos)
+void	free_print_exit_error(char *message, t_info *infos, t_line *line)
 {
 	write(2, "Error\n", 6);
 	if (message != NULL)
 		write(2, message, ft_strlen(message));
 	write(2, "\n", 1);
+	if (line != NULL)
+		ft_free_lines(line);
 	if (infos != NULL)
-		ft_free(infos);
+		ft_free(infos, -1);
 	exit (1);
 }
 
@@ -42,10 +44,8 @@ static void	ft_free_mlx(t_info *infos)
 	free(infos->mlx);
 }
 
-void	ft_free(t_info *infos)
+void	ft_free(t_info *infos, int i)
 {
-	int	i;
-
 	if (infos->mlx != NULL)
 		ft_free_mlx(infos);
 	if (infos->rc)
@@ -58,11 +58,14 @@ void	ft_free(t_info *infos)
 		free(infos->we_tx_path);
 	if (infos->ea_tx_path != NULL)
 		free(infos->ea_tx_path);
+	if (infos->f_color != NULL)
+		free(infos->f_color);
+	if (infos->c_color != NULL)
+		free(infos->c_color);
 	if (infos->f_color_clean != NULL)
 		free(infos->f_color_clean);
 	if (infos->c_color_clean != NULL)
 		free(infos->c_color_clean);
-	i = -1;
 	while (infos->map != NULL && infos->map[++i])
 		free(infos->map[i]);
 	if (infos->map != NULL)

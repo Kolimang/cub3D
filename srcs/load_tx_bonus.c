@@ -134,7 +134,7 @@ int	load_textures(t_info *infos, int size)
 	while (++i < TXNO)
 	{
 		if (!infos->tx[i])
-			free_print_exit_error("Texture not found", infos);
+			free_print_exit_error("Texture not found", infos, NULL);
 	}
 	set_textures(infos);
 	return (0);

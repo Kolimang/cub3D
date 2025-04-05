@@ -26,7 +26,7 @@ static char	*clean_texture(char *texture, int copy_len, int i, t_info *infos)
 		++ copy_len;
 	buffer = malloc((copy_len + 1) * sizeof(char));
 	if (!buffer)
-		free_print_exit_error("Malloc failure.", infos);
+		free_print_exit_error("Malloc failure.", infos, NULL);
 	j = -1;
 	while (texture[i] && !ft_isspace(texture[i]))
 		buffer[++j] = texture[i++];
@@ -34,10 +34,11 @@ static char	*clean_texture(char *texture, int copy_len, int i, t_info *infos)
 	while (ft_isspace(texture[i]))
 		++i;
 	if (texture[i] != '\0' && texture[i] != '\n')
-		free_print_exit_error(
-			"A texture should not contain more than one path.", infos);
-	free(texture);
-	return (buffer);
+	{
+		free(buffer);
+		free_print_exit_error("Multiple path for one texture.", infos, NULL);
+	}
+	return (free(texture), buffer);
 }
 
 static void	check_rgb(char *str, t_info *infos)
@@ -47,6 +48,8 @@ static void	check_rgb(char *str, t_info *infos)
 
 	count = 0;
 	i = 0;
+	while (ft_isspace(str[i]))
+		++i;
 	while (str[i])
 	{
 		if (str[i++] == ',')
@@ -58,10 +61,10 @@ static void	check_rgb(char *str, t_info *infos)
 		while (ft_isspace(str[i]))
 			++i;
 		if (str[i] != ',' && str[i] != '\0')
-			free_print_exit_error("Invalid RGB value.", infos);
+			free_print_exit_error("Invalid RGB value.", infos, NULL);
 	}
 	if (count != 2)
-		free_print_exit_error("Invalid RGB value.", infos);
+		free_print_exit_error("Invalid RGB value.", infos, NULL);
 }
 
 static int	*clean_color(char *color, int i, t_info *infos, int count)
@@ -70,7 +73,7 @@ static int	*clean_color(char *color, int i, t_info *infos, int count)
 
 	buffer = malloc(sizeof(int) * 3);
 	if (!buffer)
-		free_print_exit_error("Malloc failure.", infos);
+		free_print_exit_error("Malloc failure.", infos, NULL);
 	while (ft_isspace(color[i]))
 		++i;
 	++i;
@@ -82,7 +85,7 @@ static int	*clean_color(char *color, int i, t_info *infos, int count)
 		while (ft_isspace(color[i]))
 			++i;
 		if (!ft_isdigit(color[i]))
-			free_print_exit_error("Invalid RGB value.", infos);
+			free_print_exit_error("Invalid RGB value.", infos, NULL);
 		while (ft_isdigit(color[i]))
 			++i;
 		while (ft_isspace(color[i]))
@@ -90,7 +93,7 @@ static int	*clean_color(char *color, int i, t_info *infos, int count)
 		if (color[i] == ',')
 			++i;
 	}
-	return (free(color), buffer);
+	return (buffer);
 }
 
 void	check_infos(t_info *infos)
@@ -108,11 +111,11 @@ void	check_infos(t_info *infos)
 	color = infos->c_color_clean;
 	if (color[0] < 0 || color[0] > 255 || color[1] < 0 || color[1] > 255
 		|| color[1] < 0 || color[2] > 255)
-		free_print_exit_error("Invalid RGB value.", infos);
+		free_print_exit_error("Invalid RGB value.", infos, NULL);
 	color = infos->f_color_clean;
 	if (color[0] < 0 || color[0] > 255 || color[1] < 0 || color[1] > 255
 		|| color[1] < 0 || color[2] > 255)
-		free_print_exit_error("Invalid RGB value.", infos);
+		free_print_exit_error("Invalid RGB value.", infos, NULL);
 	check_horizontal(infos, infos->map, -1, 0);
 	check_vertical(infos->map, -1, 0, infos);
 }
