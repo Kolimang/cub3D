@@ -36,7 +36,7 @@ static int	open_file(char *file)
 	int	fd;
 
 	len_file = ft_strlen(file);
-	if (len_file < 5 || file[len_file - 1] != 'b' || file[len_file - 2] != 'u'
+	if (len_file < 4 || file[len_file - 1] != 'b' || file[len_file - 2] != 'u'
 		|| file[len_file - 3] != 'c' || file[len_file - 4] != '.')
 		free_print_exit_error("The file should be in '.cub' format.",
 			NULL, NULL);
