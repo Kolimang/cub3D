@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cube_bonus.h"
+#include "../cube.h"
 
 static void	ft_update_arr(t_info *infos, t_line *line, int i)
 {

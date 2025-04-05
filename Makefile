@@ -11,25 +11,25 @@
 # **************************************************************************** #
 
 NAME = cub3D
-SRCS =	./srcs/main_bonus.c \
-		./srcs/utils_bonus.c \
+SRCS =	./srcs/main.c \
+		./srcs/utils.c \
 		./srcs/get_lines.c \
-		./srcs/parsing_bonus.c \
-		./srcs/checking_bonus.c \
-		./srcs/check_map_bonus.c \
-		./srcs/load_tx_bonus.c \
-		./srcs/render_bonus.c \
-		./srcs/raycast_bonus.c \
-		./srcs/raycast_utils_bonus.c \
-		./srcs/draw_bonus.c \
-		./srcs/render_utils_bonus.c \
-		./srcs/mini_map_bonus.c \
-		./srcs/key_press_release_bonus.c \
-		./srcs/move_bonus.c \
-		./srcs/rotate_bonus.c \
-		./srcs/doors_bonus.c
+		./srcs/parsing.c \
+		./srcs/checking.c \
+		./srcs/check_map.c \
+		./srcs/load_tx.c \
+		./srcs/render.c \
+		./srcs/raycast.c \
+		./srcs/raycast_utils.c \
+		./srcs/draw.c \
+		./srcs/render_utils.c \
+		./srcs/mini_map.c \
+		./srcs/key_press_release.c \
+		./srcs/move.c \
+		./srcs/rotate.c \
+		./srcs/doors.c
 
-HEADER = cub3d.h
+HEADER = cube.h
 
 OBJECTS = $(SRCS:%.c=%.o)
 
