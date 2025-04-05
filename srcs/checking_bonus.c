@@ -22,22 +22,17 @@ static char	*clean_texture(char *texture, int copy_len, int i, t_info *infos)
 	i += 2;
 	while (ft_isspace(texture[i]))
 		++i;
-	while (texture[i + copy_len] != '\0' && !ft_isspace(texture[i + copy_len]))
+	while (texture[i + copy_len] != '\0')
 		++ copy_len;
 	buffer = malloc((copy_len + 1) * sizeof(char));
 	if (!buffer)
 		free_print_exit_error("Malloc failure.", infos, NULL);
 	j = -1;
-	while (texture[i] && !ft_isspace(texture[i]))
+	while (texture[i])
 		buffer[++j] = texture[i++];
 	buffer[j + 1] = '\0';
 	while (ft_isspace(texture[i]))
 		++i;
-	if (texture[i] != '\0' && texture[i] != '\n')
-	{
-		free(buffer);
-		free_print_exit_error("Multiple path for one texture.", infos, NULL);
-	}
 	return (free(texture), buffer);
 }
 
