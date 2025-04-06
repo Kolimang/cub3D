@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cube.h"
+#include "../cube_bonus.h"
 
 static void	get_infos(t_info *infos, t_line *line, int i)
 {
@@ -81,5 +81,6 @@ void	parsing(t_info *infos, int fd)
 		|| infos->we_tx_path == NULL)
 		free_print_exit_error("The file lacks information.", infos, NULL);
 	check_infos(infos);
+	check_door(infos);
 	uniform_map(infos);
 }

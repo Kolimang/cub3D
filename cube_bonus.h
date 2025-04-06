@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE_H
-# define CUBE_H
+#ifndef CUBE_BONUS_H
+# define CUBE_BONUS_H
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -23,7 +23,7 @@
 
 //contexte d'affichage
 # define FOV 66
-# define TXNO 4
+# define TXNO 45
 # define TX_W 64
 # define TX_H 64
 # define TXSIZE 64
@@ -51,11 +51,14 @@ enum
 	Q_KEY = 113,
 	S_KEY = 115,
 	D_KEY = 100,
+	X_KEY = 120,
+	F_KEY = 102,
 	ESC_KEY = 65307,
 	L_ARROW = 65361,
 	R_ARROW = 65363,
 	U_ARROW = 65362,
 	D_ARROW = 65364,
+	MOUSE_MOVE = 6
 };
 
 typedef struct s_data
@@ -75,6 +78,11 @@ typedef struct s_moves
 	char	strafe_r;
 	char	rot_l;
 	char	rot_r;
+	int		mouse_rotation;
+	int		mouse_move;
+	int		prev_mouse_x;
+	int		trigger;
+	int		win_focus;
 }	t_moves;
 
 typedef struct s_rc
@@ -98,6 +106,7 @@ typedef struct s_rc
 	int				step_y;
 	// wall hit
 	int				hit;
+	int				torch_hit;
 	int				side;
 	// texture calculations
 	char			wall_ori;
@@ -204,7 +213,10 @@ int			on_keyrelease(int key, t_info *infos);
 // move.c
 void		rotate_r(t_info *infos);
 void		rotate_l(t_info *infos);
+int			mouse_rotate(t_info *infos, int x);
+int			mouse_moved(int x, int y, t_info *infos);
 int			move_player(t_info *infos);
+int			mouse_focus(t_info *infos);
 
 // draw.c
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -214,11 +226,21 @@ void		fill_img(t_info *infos);
 
 // load_tx.c
 int			load_textures(t_info *infos, int size);
+int			load_animation_tx1(t_info *infos, int size);
+int			load_animation_tx2(t_info *infos, int size);
+int			load_animation_tx3(t_info *infos, int size);
+int			load_animation_tx4(t_info *infos, int size);
 
 // render_utils.c
 void		set_textures(t_info *infos);
 void		set_mlx_screen_img(t_info *infos);
 uint64_t	get_time_ms(void);
+void		draw_minimap(t_info *infos, int i);
 void		get_texture_coord(t_info *infos);
+
+//doors.c
+void		check_door(t_info *infos);
+void		open_close_door(t_info *infos);
+void		get_door_texture(t_info *infos, t_rc *rc);
 
 #endif

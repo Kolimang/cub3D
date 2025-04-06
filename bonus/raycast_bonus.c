@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cube.h"
+#include "../cube_bonus.h"
 
 // Perform digital differential analyzer (DDA) algorithm
 // Jump to next map square in x or y direction
@@ -19,7 +19,8 @@ void	dda_algo(t_info *infos, t_rc *rc)
 {
 	rc = infos->rc;
 	rc->hit = 0;
-	while (rc->hit == 0)
+	rc->torch_hit = 0;
+	while (rc->hit == 0 && rc->torch_hit == 0)
 	{
 		if (rc->side_dist_x < rc->side_dist_y)
 		{
@@ -33,8 +34,11 @@ void	dda_algo(t_info *infos, t_rc *rc)
 			rc->map_y += rc->step_y;
 			rc->side = 1;
 		}
-		if (infos->map[rc->map_x][rc->map_y] == '1')
+		if (infos->map[rc->map_x][rc->map_y] == '1'
+			|| infos->map[rc->map_x][rc->map_y] == '2')
 			rc->hit = 1;
+		else if (infos->map[rc->map_x][rc->map_y] == 'T')
+			rc->torch_hit = 1;
 	}
 }
 
@@ -112,6 +116,7 @@ int	raycast(t_info *infos, t_rc *rc)
 	infos->time = get_time_ms();
 	infos->frame_time = (infos->time - infos->old_time) / 1000.0;
 	infos->frame += 1;
+	draw_minimap(infos, -1);
 	put_fps_win(infos);
 	return (0);
 }

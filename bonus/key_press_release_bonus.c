@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cube.h"
+#include "../cube_bonus.h"
 
 int	on_keypress(int key, t_info *infos)
 {
@@ -28,6 +28,10 @@ int	on_keypress(int key, t_info *infos)
 		infos->moves.rot_l = 1;
 	if (key == ESC_KEY)
 		on_destroy(infos);
+	if (key == X_KEY)
+		mouse_focus(infos);
+	if (key == F_KEY)
+		open_close_door(infos);
 	return (0);
 }
 

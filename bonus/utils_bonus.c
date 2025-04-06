@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cube.h"
+#include "../cube_bonus.h"
 
 void	free_print_exit_error(char *message, t_info *infos, t_line *line)
 {
@@ -81,8 +81,14 @@ void	init_movements(t_info *infos)
 	infos->moves.strafe_r = 0;
 	infos->moves.rot_l = 0;
 	infos->moves.rot_r = 0;
+	infos->moves.mouse_move = 0;
 	infos->time = get_time_ms();
 	infos->old_time = 0;
+	infos->moves.prev_mouse_x = WIN_W / 2;
+	infos->moves.trigger = 0;
+	infos->moves.win_focus = 1;
+	infos->tx[4] = NULL;
+	infos->tx[5] = NULL;
 }
 
 void	init_infos(t_info *infos, int i)

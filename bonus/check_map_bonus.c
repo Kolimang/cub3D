@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cube.h"
+#include "../cube_bonus.h"
 
 void	other_pos(t_info *infos, int y, int x)
 {
@@ -70,7 +70,7 @@ void	check_horizontal(t_info *infos, char **map, int i, int start_trigger)
 			++j;
 		while (map[i][j])
 		{
-			if (map[i][j] != '1' && !ft_isspace(map[i][j])
+			if (map[i][j] != '1' && map[i][j] != 'T' && !ft_isspace(map[i][j])
 				&& (j == 0 || ft_isspace(map[i][j - 1])
 					|| ft_isspace(map[i][j + 1]) || map[i][j + 1] == '\0'))
 				free_print_exit_error("The map must be surrounded by walls." \
@@ -78,8 +78,8 @@ void	check_horizontal(t_info *infos, char **map, int i, int start_trigger)
 			if (map[i][j] == 'N' || map[i][j] == 'W'
 				|| map[i][j] == 'S' || map[i][j] == 'E')
 				update_start_pos(&start_trigger, infos, j, i);
-			else if (map[i][j] != '0' && map[i][j] != '1'
-					&& !ft_isspace(map[i][j]))
+			else if (map[i][j] != '0' && map[i][j] != '1' && map[i][j] != 'T'
+					&& !ft_isspace(map[i][j]) && map[i][j] != '2')
 				free_print_exit_error("Invalid char in the map.", infos, NULL);
 			++j;
 		}
@@ -112,11 +112,12 @@ void	check_vertical(char **map, int i, int j, t_info *infos)
 			++j;
 		while (map[i][j])
 		{
-			if (map[i][j] != '1' && !ft_isspace(map[i][j]) \
+			if (map[i][j] != '1' && map[i][j] != 'T' && !ft_isspace(map[i][j]) \
 				&& (i == 0 || i == infos->map_len - 1))
 				free_print_exit_error("The map must be surrounded by walls." \
 									, infos, NULL);
-			else if (map[i][j] != '1' && !ft_isspace(map[i][j]))
+			else if (map[i][j] != '1' && map[i][j] != 'T'
+				&& !ft_isspace(map[i][j]))
 			{
 				if ((int)ft_strlen(map[i - 1]) - 1 < j || \
 					(int)ft_strlen(map[i + 1]) - 1 < j || \

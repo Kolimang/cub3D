@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cube.h"
+#include "../cube_bonus.h"
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -18,6 +18,24 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
+}
+
+void	select_anim_texture(t_info *infos)
+{
+	t_rc	*rc;
+
+	rc = infos->rc;
+	if (infos->curr_tx_index > 9)
+		infos->curr_tx_index = 0;
+	if (infos->curr_tx_index <= 0)
+		rc->tx_id = 5 + (10 * rc->wall_ori);
+	else
+		rc->tx_id = 5 + (10 * rc->wall_ori) + infos->curr_tx_index;
+	if (infos->frame > 3)
+	{
+		infos->frame = 0;
+		infos->curr_tx_index++;
+	}
 }
 
 // Define which texture must be rendered on current stripe
@@ -47,6 +65,9 @@ void	select_texture(t_info *infos)
 			rc->tx_id = 2;
 	}
 	rc->wall_ori = rc->tx_id;
+	if (rc->torch_hit == 1)
+		select_anim_texture(infos);
+	get_door_texture(infos, rc);
 }
 
 void	fill_env_color(t_info *infos, int start, int end, int *col)
